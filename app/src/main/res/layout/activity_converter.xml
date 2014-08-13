@@ -1,0 +1,124 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".Converter">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sumToConvert"
+        android:id="@+id/sumToConvertTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/amountEditText"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/sumToConvertTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/currencyOriginTextView"
+        android:layout_toStartOf="@+id/currencyOriginTextView"
+        android:inputType="numberDecimal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/yearOfOrigin"
+        android:id="@+id/yearOfOriginTextView"
+        android:layout_alignBottom="@+id/yearOfOriginSpinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/yearOfResultTextView"
+        android:layout_alignEnd="@+id/yearOfResultTextView" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/yearOfOriginSpinner"
+        android:layout_toEndOf="@+id/convertButton"
+        android:layout_below="@+id/amountEditText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/yearOfResult"
+        android:id="@+id/yearOfResultTextView"
+        android:layout_toEndOf="@+id/resultTextView"
+        android:layout_alignBottom="@+id/yearOfResultSpinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/yearOfResultSpinner"
+        android:layout_toEndOf="@+id/convertButton"
+        android:layout_below="@+id/yearOfOriginSpinner"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/convertButton"
+        android:id="@+id/convertButton"
+        android:layout_below="@+id/yearOfResultTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/resultTextView"
+        android:layout_marginTop="22dp"
+        android:layout_below="@+id/convertButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:text="@string/resultText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="€"
+        android:id="@+id/currencyOriginTextView"
+        android:layout_alignBottom="@+id/amountEditText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/resultEditText"
+        android:layout_below="@+id/resultTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="24dp"
+        android:layout_toLeftOf="@+id/currencyResultTextView"
+        android:layout_toStartOf="@+id/currencyResultTextView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="€"
+        android:id="@+id/currencyResultTextView"
+        android:layout_alignBottom="@+id/resultEditText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
