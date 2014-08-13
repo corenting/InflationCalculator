@@ -73,6 +73,9 @@ public class Utils {
             case 2001:
                 multiplier = 0.18665f;
                 break;
+            case 2000:
+                multiplier = 0.18976f;
+                break;
             default:
                 multiplier = 1f;
         }

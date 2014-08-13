@@ -10,5 +10,6 @@
     <string name="resultText">Résultat :</string>
 
     <string name="about_text"><![CDATA[Une application créée par corenting.<br><a href="http://www.corenting.fr">Site web</a><br><br>Version :&nbsp;]]></string>
+    <string name="errorToast">Erreur lors de la conversion !</string>
 
 </resources>

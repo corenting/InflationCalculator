@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -46,14 +47,21 @@ public class Converter extends ActionBarActivity {
         //Convert when the button is clicked
         Button convertButton = (Button) findViewById(R.id.convertButton);
         final EditText resultEditText = (EditText) findViewById(R.id.resultEditText);
-        resultEditText.setKeyListener(null);
+        resultEditText.setKeyListener(null); //Make the EditText widget read only
         final EditText amountEditText = (EditText) findViewById(R.id.amountEditText);
         convertButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                int yearOfOrigin = Integer.parseInt(originSpinner.getSelectedItem().toString());
-                int yearOfResult = Integer.parseInt(resultSpinner.getSelectedItem().toString());
-                float amount = Float.parseFloat(amountEditText.getText().toString());
-                resultEditText.setText(String.valueOf(Utils.convertFunction(yearOfOrigin,yearOfResult,amount)));
+                try {
+                    int yearOfOrigin = Integer.parseInt(originSpinner.getSelectedItem().toString());
+                    int yearOfResult = Integer.parseInt(resultSpinner.getSelectedItem().toString());
+                    float amount = Float.parseFloat(amountEditText.getText().toString());
+                    resultEditText.setText(String.valueOf(Utils.convertFunction(yearOfOrigin, yearOfResult, amount)));
+                }
+                catch (Exception e)
+                {
+                    Toast errorToast = Toast.makeText(getApplicationContext(),getString(R.string.errorToast), Toast.LENGTH_SHORT);
+                    errorToast.show();
+                }
             }
         });
 
