@@ -66,6 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/yearOfOriginSpinner"
+            android:layout_marginTop="48dp"
             android:layout_toEndOf="@+id/yearOfOriginTextView"
             android:layout_below="@+id/amountEditText"
             android:layout_toRightOf="@+id/yearOfOriginTextView"
@@ -87,6 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/yearOfResultSpinner"
+            android:layout_marginTop="48dp"
             android:layout_toEndOf="@+id/yearOfResultTextView"
             android:layout_below="@+id/yearOfOriginSpinner"
             android:layout_toRightOf="@+id/yearOfResultTextView"
@@ -100,13 +102,13 @@
             android:id="@+id/convertButton"
             android:layout_below="@+id/yearOfResultTextView"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="48dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/resultTextView"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:layout_below="@+id/convertButton"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"

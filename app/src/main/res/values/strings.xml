@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="appName">Convertisseur Euro Franc</string>
-    <string name="actionAbout">Settings</string>
-    <string name="sumToConvert">Somme à convertir :</string>
-    <string name="yearOfOrigin">Année d\'origine :</string>
-    <string name="yearOfResult">Année de conversion :</string>
-    <string name="convertButton">Convertir</string>
-    <string name="resultText">Résultat :</string>
-
-    <string name="about_text"><![CDATA[Une application créée par corenting.<br><a href="http://www.corenting.fr">Site web</a><br><br>Version :&nbsp;]]></string>
-    <string name="errorToast">Erreur lors de la conversion !</string>
+    <string name="appName">Inflation Calculator</string>
+    <string name="sumToConvert">Amount to convert:</string>
+    <string name="yearOfOrigin">in:</string>
+    <string name="yearOfResult">to:</string>
+    <string name="convertButton">Convert</string>
+    <string name="resultText">Result:</string>
+    <string name="actionAbout">About</string>
+    <string name="aboutText"><![CDATA[The transition from old Francs to new Francs is automatic from 1960.<br>The transition from Francs to Euro is automatic from 2002.<br><br>This application was created by corenting.<br><a href="http://www.corenting.fr">Website</a><br><br>Version :&nbsp;]]></string>
+    <string name="errorToast">Error during the conversion!</string>
+    <string name="euroSymbol">€</string>
+    <string name="keyboardHidingError">Error while hiding keyboard</string>
 
 </resources>
