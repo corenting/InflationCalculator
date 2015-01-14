@@ -7,12 +7,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class ConvertCalc {
 
-    HashMap<Integer, Float> values = new LinkedHashMap<Integer, Float>(115);
+    HashMap<Integer, Float> values = new LinkedHashMap<>();
 
     ConvertCalc(Context context) {
         //Load the values from the csv file
@@ -32,8 +33,28 @@ public class ConvertCalc {
 
     }
 
-    public float convertFunction(int yearOfOrigin, int yearOfResult, float amount) {
-        float amountInEuroToday = amount * values.get(yearOfOrigin);
-        return amountInEuroToday / values.get(yearOfResult);
+    public BigDecimal convertFunction(int yearOfOrigin, int yearOfResult, float amount) {
+        if(yearOfOrigin == yearOfResult) return BigDecimal.valueOf(amount);
+        double multiplier = values.get(yearOfResult) / values.get(yearOfOrigin);
+        //Convert values to €
+        if (yearOfResult < 1960)
+        {
+            amount *= 100;
+        }
+        if (yearOfOrigin < 1960)
+        {
+            amount /= 100;
+        }
+        if(yearOfResult < 2002) //Francs
+        {
+            amount *= 6.55957;
+        }
+        if(yearOfOrigin < 2002)
+        {
+            amount *= 0.1524;
+        }
+
+        double result = amount * multiplier;
+        return  BigDecimal.valueOf(result);
     }
 }

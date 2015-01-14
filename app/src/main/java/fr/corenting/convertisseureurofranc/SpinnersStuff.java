@@ -19,8 +19,8 @@ public class SpinnersStuff {
         TextView currencyResultTextView = (TextView) activity.findViewById(R.id.currencyResultTextView);
 
         //Initialize the spinners
-        fillSpinnerWithYears(activity, originSpinner, 2013);
-        fillSpinnerWithYears(activity, resultSpinner, 2013);
+        fillSpinnerWithYears(activity, originSpinner, 2014);
+        fillSpinnerWithYears(activity, resultSpinner, 2014);
 
         //Add an onItemSelected listener to change the currency text according to the year
         setListeners(originSpinner, currencyOriginTextView);
