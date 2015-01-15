@@ -45,13 +45,13 @@ public class ConvertCalc {
         {
             amount /= 100;
         }
-        if(yearOfResult < 2002) //Francs
+        if(yearOfResult < 2002)
         {
             amount *= 6.55957;
         }
         if(yearOfOrigin < 2002)
         {
-            amount *= 0.1524;
+            amount *= 0.15244;
         }
 
         double result = amount * multiplier;

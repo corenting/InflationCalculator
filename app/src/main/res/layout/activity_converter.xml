@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/euroSymbol"
+            android:text="@string/AF"
             android:id="@+id/currencyOriginTextView"
             android:layout_alignBaseline="@+id/amountEditText"
             android:layout_toStartOf="@+id/yearOfOriginSpinner"
@@ -66,11 +66,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/yearOfOriginSpinner"
-            android:layout_toEndOf="@+id/yearOfOriginTextView"
             android:layout_below="@+id/amountEditText"
             android:layout_toRightOf="@+id/yearOfOriginTextView"
-            android:layout_alignRight="@+id/amountEditText"
-            android:layout_alignEnd="@+id/amountEditText" />
+            android:layout_alignRight="@+id/currencyResultTextView"
+            android:layout_alignEnd="@+id/currencyResultTextView" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -128,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/euroSymbol"
+            android:text="@string/AF"
             android:id="@+id/currencyResultTextView"
             android:layout_alignBaseline="@+id/resultEditText"
             android:layout_alignBottom="@+id/resultEditText"

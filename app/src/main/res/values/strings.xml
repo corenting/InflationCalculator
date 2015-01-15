@@ -10,7 +10,7 @@
     <string name="actionAbout">About</string>
     <string name="aboutText"><![CDATA[The transition from old Francs to new Francs is automatic from 1960.<br>The transition from Francs to Euro is automatic from 2002.<br><br>This application was created by corenting.<br><a href="http://www.corenting.fr">Website</a><br><br>Version :&nbsp;]]></string>
     <string name="errorToast">Error during the conversion!</string>
-    <string name="euroSymbol">€</string>
+    <string name="AF" translatable="false">AF</string>
     <string name="keyboardHidingError">Error while hiding keyboard</string>
 
 </resources>

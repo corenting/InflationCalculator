@@ -13,7 +13,9 @@ import android.widget.TextView;
 public class Utils {
 
     static String getCurrencyFromYear(int year) {
-        return (year >= 2002) ? "€" : "F";
+        if(year >= 2002) return "€";
+        if(year >= 1960) return "F";
+        return "AF";
     }
 
     static void hideSoftKeyboard(View v) {
