@@ -33,22 +33,19 @@
             android:layout_below="@+id/sumToConvertTextView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/resultEditText"
-            android:layout_alignEnd="@+id/resultEditText" />
+            android:layout_alignRight="@+id/yearOfOriginSpinner"
+            android:layout_alignEnd="@+id/yearOfOriginSpinner" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="35dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/AF"
             android:id="@+id/currencyOriginTextView"
             android:layout_alignBaseline="@+id/amountEditText"
-            android:layout_toStartOf="@+id/yearOfOriginSpinner"
-            android:layout_toEndOf="@+id/amountEditText"
             android:layout_above="@+id/yearOfOriginSpinner"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_toRightOf="@+id/amountEditText" />
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -68,8 +65,8 @@
             android:id="@+id/yearOfOriginSpinner"
             android:layout_below="@+id/amountEditText"
             android:layout_toRightOf="@+id/yearOfOriginTextView"
-            android:layout_alignRight="@+id/currencyResultTextView"
-            android:layout_alignEnd="@+id/currencyResultTextView" />
+            android:layout_toLeftOf="@+id/currencyOriginTextView"
+            android:layout_toStartOf="@+id/currencyOriginTextView" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -121,10 +118,11 @@
             android:layout_below="@+id/resultTextView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_toLeftOf="@+id/currencyResultTextView" />
+            android:layout_alignRight="@+id/yearOfResultSpinner"
+            android:layout_alignEnd="@+id/yearOfResultSpinner" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="35dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/AF"

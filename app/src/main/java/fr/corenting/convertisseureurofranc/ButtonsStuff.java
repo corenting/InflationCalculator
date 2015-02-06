@@ -50,7 +50,7 @@ public class ButtonsStuff {
                     int yearOfOrigin = Integer.parseInt(originSpinner.getSelectedItem().toString());
                     int yearOfResult = Integer.parseInt(resultSpinner.getSelectedItem().toString());
                     float amount = Float.parseFloat(amountEditText.getText().toString());
-                    resultEditText.setText(String.valueOf(convertCalc.convertFunction(yearOfOrigin, yearOfResult, amount).toPlainString()));
+                    resultEditText.setText(Utils.formatNumber(activity, convertCalc.convertFunction(yearOfOrigin, yearOfResult, amount)));
                 } catch (Exception e) {
                     Toast errorToast = Toast.makeText(activity.getApplicationContext(), activity.getString(R.string.errorToast), Toast.LENGTH_SHORT);
                     errorToast.show();

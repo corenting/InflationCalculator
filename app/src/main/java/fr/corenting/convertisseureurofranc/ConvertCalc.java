@@ -33,28 +33,23 @@ public class ConvertCalc {
 
     }
 
-    public BigDecimal convertFunction(int yearOfOrigin, int yearOfResult, float amount) {
-        if(yearOfOrigin == yearOfResult) return BigDecimal.valueOf(amount);
+    public double convertFunction(int yearOfOrigin, int yearOfResult, float amount) {
+        if (yearOfOrigin == yearOfResult) return amount;
         double multiplier = values.get(yearOfResult) / values.get(yearOfOrigin);
         //Convert values to €
-        if (yearOfResult < 1960)
-        {
+        if (yearOfResult < 1960) {
             amount *= 100;
         }
-        if (yearOfOrigin < 1960)
-        {
+        if (yearOfOrigin < 1960) {
             amount /= 100;
         }
-        if(yearOfResult < 2002)
-        {
+        if (yearOfResult < 2002) {
             amount *= 6.55957;
         }
-        if(yearOfOrigin < 2002)
-        {
+        if (yearOfOrigin < 2002) {
             amount *= 0.15244;
         }
 
-        double result = amount * multiplier;
-        return  BigDecimal.valueOf(result);
+        return amount * multiplier;
     }
 }

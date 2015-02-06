@@ -10,11 +10,14 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class Utils {
 
     static String getCurrencyFromYear(int year) {
-        if(year >= 2002) return "€";
-        if(year >= 1960) return "F";
+        if (year >= 2002) return "€";
+        if (year >= 1960) return "F";
         return "AF";
     }
 
@@ -36,5 +39,10 @@ public class Utils {
                 .show()
                 .findViewById(android.R.id.message))
                 .setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    static String formatNumber(Context c, double number) {
+        DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(c.getResources().getConfiguration().locale);
+        return formatter.format(number);
     }
 }
