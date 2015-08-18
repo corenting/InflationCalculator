@@ -2,7 +2,7 @@
 
     <style name="AppTheme" parent="Theme.AppCompat">
         <item name="colorPrimary">#3f51b5</item>
-        <item name="colorPrimaryDark">#3949ab</item>
-        <item name="colorAccent">#c5cae9</item>
+        <item name="colorPrimaryDark">#303f9f</item>
+        <item name="colorAccent">#FF5252</item>
     </style>
 </resources>
