@@ -7,74 +7,69 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin">
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/sumToConvert"
-            android:id="@+id/sumToConvertTextView"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
+            android:id="@+id/sumToConvertTextView" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
             android:ems="10"
             android:id="@+id/amountEditText"
-            android:inputType="numberDecimal"
             android:layout_below="@+id/sumToConvertTextView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/yearOfOriginSpinner"
-            android:layout_alignEnd="@+id/yearOfOriginSpinner" />
-
-        <TextView
-            android:layout_width="35dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/AF"
-            android:id="@+id/currencyOriginTextView"
-            android:layout_alignBaseline="@+id/amountEditText"
-            android:layout_above="@+id/yearOfOriginSpinner"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="AF"
+            android:id="@+id/currencyOriginTextView"
+            android:layout_below="@+id/amountEditText"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/yearOfOrigin"
-            android:id="@+id/yearOfOriginTextView"
+            android:layout_below="@id/currencyOriginTextView"
             android:layout_alignBaseline="@+id/yearOfOriginSpinner"
-            android:layout_alignBottom="@+id/yearOfOriginSpinner"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/yearOfResultTextView"
-            android:layout_alignEnd="@+id/yearOfResultTextView" />
+            android:id="@+id/yearOfOriginTextView" />
 
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/yearOfOriginSpinner"
-            android:layout_below="@+id/amountEditText"
-            android:layout_toRightOf="@+id/yearOfOriginTextView"
-            android:layout_toLeftOf="@+id/currencyOriginTextView"
-            android:layout_toStartOf="@+id/currencyOriginTextView" />
+            android:layout_below="@+id/currencyOriginTextView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="12dp"
+            android:layout_alignLeft="@+id/yearOfResultSpinner"
+            android:layout_alignStart="@+id/yearOfResultSpinner" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/yearOfResult"
             android:id="@+id/yearOfResultTextView"
             android:layout_alignBaseline="@+id/yearOfResultSpinner"
-            android:layout_toEndOf="@+id/resultTextView"
-            android:layout_alignBottom="@+id/yearOfResultSpinner"
+            android:layout_below="@+id/yearOfOriginSpinner"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -82,30 +77,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/yearOfResultSpinner"
-            android:layout_toEndOf="@+id/yearOfResultTextView"
             android:layout_below="@+id/yearOfOriginSpinner"
+            android:layout_marginTop="12dp"
             android:layout_toRightOf="@+id/yearOfResultTextView"
-            android:layout_alignRight="@+id/yearOfOriginSpinner"
-            android:layout_alignEnd="@+id/yearOfOriginSpinner" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/convertButton"
             android:id="@+id/convertButton"
-            android:layout_below="@+id/yearOfResultTextView"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="24dp" />
+            android:layout_marginTop="24dp"
+            android:layout_below="@+id/yearOfResultSpinner" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/resultText"
             android:id="@+id/resultTextView"
-            android:layout_marginTop="12dp"
-            android:layout_below="@+id/convertButton"
+            android:layout_below="@id/convertButton"
+            android:layout_marginTop="24dp"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:text="@string/resultText" />
+            android:layout_alignParentStart="true" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -113,21 +109,18 @@
             android:inputType="numberDecimal"
             android:ems="10"
             android:id="@+id/resultEditText"
-            android:layout_toStartOf="@+id/currencyResultTextView"
             android:layout_below="@+id/resultTextView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_alignRight="@+id/yearOfResultSpinner"
-            android:layout_alignEnd="@+id/yearOfResultSpinner" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
-            android:layout_width="35dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/AF"
+            android:text="AF"
             android:id="@+id/currencyResultTextView"
-            android:layout_alignBaseline="@+id/resultEditText"
-            android:layout_alignBottom="@+id/resultEditText"
+            android:layout_below="@+id/resultEditText"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 

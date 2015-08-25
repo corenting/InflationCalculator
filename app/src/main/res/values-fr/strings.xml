@@ -11,5 +11,8 @@
     <string name="aboutText"><![CDATA[Le passage des anciens Francs aux nouveaux Francs s\'effectue automatiquement à partir de 1960.<br>Le passage des Francs à l\'Euro s\'effectue automatiquent à partir de 2002.<br><br>Une application créée par corenting.<br><a href="http://www.corenting.fr">Site web</a><br><br>Version :&nbsp;]]></string>
     <string name="errorToast">Erreur lors de la conversion !</string>
     <string name="keyboardHidingError">Erreur lors de la dissumulation du clavier</string>
+    <string name="euros">euros</string>
+    <string name="francs">francs</string>
+    <string name="old_francs">old francs</string>
 
 </resources>

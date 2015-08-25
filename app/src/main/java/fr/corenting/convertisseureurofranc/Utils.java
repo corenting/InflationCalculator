@@ -15,10 +15,10 @@ import java.text.NumberFormat;
 
 public class Utils {
 
-    static String getCurrencyFromYear(int year) {
-        if (year >= 2002) return "€";
-        if (year >= 1960) return "F";
-        return "AF";
+    static String getCurrencyFromYear(Context c, int year) {
+        if (year >= 2002) return c.getString(R.string.euros);
+        if (year >= 1960) return c.getString(R.string.francs);
+        return c.getString(R.string.old_francs);
     }
 
     static void hideSoftKeyboard(View v) {
