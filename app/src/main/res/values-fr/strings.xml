@@ -13,6 +13,7 @@
     <string name="keyboardHidingError">Erreur lors de la dissumulation du clavier</string>
     <string name="euros">euros</string>
     <string name="francs">francs</string>
-    <string name="old_francs">old francs</string>
+    <string name="oldFrancs">old francs</string>
+    <string name="actionDarkTheme">Thème sombre</string>
 
 </resources>

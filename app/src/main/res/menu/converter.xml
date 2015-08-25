@@ -3,8 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Converter" >
     <item
+        android:id="@+id/action_dark_theme"
+        android:title="@string/actionDarkTheme"
+        android:checkable="true"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/action_about"
         android:title="@string/actionAbout"
-        android:icon="@drawable/ic_action_about"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 </menu>

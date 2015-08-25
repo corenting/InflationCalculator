@@ -18,7 +18,7 @@ public class Utils {
     static String getCurrencyFromYear(Context c, int year) {
         if (year >= 2002) return c.getString(R.string.euros);
         if (year >= 1960) return c.getString(R.string.francs);
-        return c.getString(R.string.old_francs);
+        return c.getString(R.string.oldFrancs);
     }
 
     static void hideSoftKeyboard(View v) {

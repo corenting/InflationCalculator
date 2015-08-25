@@ -13,6 +13,8 @@
     <string name="keyboardHidingError">Error while hiding keyboard</string>
     <string name="euros">euros</string>
     <string name="francs">francs</string>
-    <string name="old_francs">anciens francs</string>
+    <string name="oldFrancs">anciens francs</string>
+    <string name="actionDarkTheme">Dark theme</string>
+    <string name="preferenceDarkThemeKey">darkTheme</string>
 
 </resources>
