@@ -14,12 +14,9 @@ public class ConverterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if(prefs.getBoolean(getString(R.string.preferenceDarkThemeKey), false))
-        {
+        if (prefs.getBoolean(getString(R.string.preferenceDarkThemeKey), false)) {
             setTheme(R.style.AppThemeDark);
-        }
-        else
-        {
+        } else {
             setTheme(R.style.AppTheme);
         }
         super.onCreate(savedInstanceState);
@@ -40,8 +37,7 @@ public class ConverterActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.converter, menu);
-        if(prefs.getBoolean(getString(R.string.preferenceDarkThemeKey), false))
-        {
+        if (prefs.getBoolean(getString(R.string.preferenceDarkThemeKey), false)) {
             menu.getItem(0).setChecked(true);
         }
         return true;
@@ -50,8 +46,7 @@ public class ConverterActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id)
-        {
+        switch (id) {
             case R.id.action_about:
                 Utils.showCredits(this);
                 break;

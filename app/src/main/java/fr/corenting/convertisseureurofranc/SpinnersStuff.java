@@ -32,7 +32,7 @@ public class SpinnersStuff {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 int year = Integer.parseInt(parent.getItemAtPosition(pos).toString());
-                textView.setText(Utils.getCurrencyFromYear(view.getContext(), year));
+                textView.setText(Utils.getCurrencyFromYear(parent.getContext(), year));
             }
 
             @Override
