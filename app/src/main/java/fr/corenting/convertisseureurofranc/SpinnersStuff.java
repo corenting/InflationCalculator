@@ -27,7 +27,7 @@ public class SpinnersStuff {
         setListeners(resultSpinner, currencyResultTextView);
     }
 
-    static void setListeners(Spinner spinner, final TextView textView) {
+    private static void setListeners(Spinner spinner, final TextView textView) {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -41,13 +41,13 @@ public class SpinnersStuff {
         });
     }
 
-    static void fillSpinnerWithYears(Activity activity, Spinner spinner, int maxYear) {
+    private static void fillSpinnerWithYears(Activity activity, Spinner spinner, int maxYear) {
         //Populate the spinners with a list of years
-        List<Integer> yearsList = new LinkedList<Integer>();
+        List<Integer> yearsList = new LinkedList<>();
         for (int i = maxYear; i >= 1901; i--) {
             yearsList.add(i);
         }
-        ArrayAdapter<Integer> spinnerArray = new ArrayAdapter<Integer>(activity, android.R.layout.simple_spinner_item, yearsList);
+        ArrayAdapter<Integer> spinnerArray = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, yearsList);
         spinnerArray.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerArray);
     }

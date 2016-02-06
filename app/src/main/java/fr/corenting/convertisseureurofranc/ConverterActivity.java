@@ -27,7 +27,7 @@ public class ConverterActivity extends AppCompatActivity {
 
         //Initialize the spinners with the Init class
         SpinnersStuff.Init(this, convertCalc.latestYear);
-        
+
         //Convert when the button is clicked
         ButtonsStuff.ButtonsInit(this);
         ButtonsStuff.amountEditTextOnKeyInit(this);
