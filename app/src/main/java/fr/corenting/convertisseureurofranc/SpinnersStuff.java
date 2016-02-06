@@ -12,15 +12,15 @@ import java.util.List;
 
 public class SpinnersStuff {
 
-    static void Init(Activity activity) {
+    static void Init(Activity activity, int latestYear) {
         Spinner originSpinner = (Spinner) activity.findViewById(R.id.yearOfOriginSpinner);
         Spinner resultSpinner = (Spinner) activity.findViewById(R.id.yearOfResultSpinner);
         TextView currencyOriginTextView = (TextView) activity.findViewById(R.id.currencyOriginTextView);
         TextView currencyResultTextView = (TextView) activity.findViewById(R.id.currencyResultTextView);
 
         //Initialize the spinners
-        fillSpinnerWithYears(activity, originSpinner, 2014);
-        fillSpinnerWithYears(activity, resultSpinner, 2014);
+        fillSpinnerWithYears(activity, originSpinner, latestYear);
+        fillSpinnerWithYears(activity, resultSpinner, latestYear);
 
         //Add an onItemSelected listener to change the currency text according to the year
         setListeners(originSpinner, currencyOriginTextView);

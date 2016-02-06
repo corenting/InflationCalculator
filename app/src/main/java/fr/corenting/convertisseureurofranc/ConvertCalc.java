@@ -13,30 +13,39 @@ import java.util.LinkedHashMap;
 
 public class ConvertCalc {
 
-    HashMap<Integer, Float> values = new LinkedHashMap<>();
+    private HashMap<Integer, Float> values = new LinkedHashMap<>();
+    public int latestYear;
 
-    ConvertCalc(Context context) {
+    public ConvertCalc(Context context) {
         //Load the values from the csv file
         InputStream inputStream = context.getResources().openRawResource(R.raw.converter_values);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
+        boolean first = true;
         try {
             while ((line = reader.readLine()) != null) {
                 String[] separatedLine = line.split(";");
-                values.put(Integer.parseInt(separatedLine[0]), Float.parseFloat(separatedLine[1]));
+                int year = Integer.parseInt(separatedLine[0]);
+                float value = Float.parseFloat(separatedLine[1]);
+                values.put(year, value);
+
+                //For the first entry, get the year to use for the spinners
+                if (first) {
+                    first = false;
+                    latestYear = Integer.parseInt(separatedLine[0]);
+                }
             }
             reader.close();
         } catch (IOException e) {
             Log.d("ConvertCalc", e.getMessage());
             e.printStackTrace();
         }
-
     }
 
     public double convertFunction(int yearOfOrigin, int yearOfResult, float amount) {
         if (yearOfOrigin == yearOfResult) return amount;
         double multiplier = values.get(yearOfResult) / values.get(yearOfOrigin);
-        //Convert values to €
+        //Convert values if currency is different
         if (yearOfResult < 1960) {
             amount *= 100;
         }

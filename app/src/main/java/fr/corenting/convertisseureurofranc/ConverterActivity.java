@@ -22,12 +22,12 @@ public class ConverterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_converter);
 
-        //Initialize the spinners with the Init class
-        SpinnersStuff.Init(this);
-
         //Initialize the ConvertCalc class
-        final ConvertCalc convertCalc = new ConvertCalc(getApplicationContext());
+        final ConvertCalc convertCalc = new ConvertCalc(this);
 
+        //Initialize the spinners with the Init class
+        SpinnersStuff.Init(this, convertCalc.latestYear);
+        
         //Convert when the button is clicked
         ButtonsStuff.ButtonsInit(this);
         ButtonsStuff.amountEditTextOnKeyInit(this);
