@@ -1,4 +1,4 @@
-package fr.corenting.convertisseureurofranc;
+package fr.corenting.convertisseureurofranc.convert;
 
 import android.content.Context;
 import android.util.Log;
@@ -10,12 +10,14 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class ConvertCalc {
+import fr.corenting.convertisseureurofranc.R;
+
+public class France extends ConvertAbstract {
 
     private HashMap<Integer, Float> values = new LinkedHashMap<>();
-    public int latestYear;
 
-    public ConvertCalc(Context context) {
+    public France(Context context) {
+        this.context = context;
         //Load the values from the csv file
         InputStream inputStream = context.getResources().openRawResource(R.raw.converter_values);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -36,7 +38,7 @@ public class ConvertCalc {
             }
             reader.close();
         } catch (IOException e) {
-            Log.d("ConvertCalc", e.getMessage());
+            Log.d("France", e.getMessage());
             e.printStackTrace();
         }
     }
@@ -59,5 +61,11 @@ public class ConvertCalc {
         }
 
         return amount * multiplier;
+    }
+
+    public String getCurrencyFromYear(int year) {
+        if (year >= 2002) return context.getString(R.string.euros);
+        if (year >= 1960) return context.getString(R.string.francs);
+        return context.getString(R.string.oldFrancs);
     }
 }

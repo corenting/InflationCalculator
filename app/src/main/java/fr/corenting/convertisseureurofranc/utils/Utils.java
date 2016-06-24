@@ -1,4 +1,4 @@
-package fr.corenting.convertisseureurofranc;
+package fr.corenting.convertisseureurofranc.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,20 +13,17 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+import fr.corenting.convertisseureurofranc.BuildConfig;
+import fr.corenting.convertisseureurofranc.R;
+
 public class Utils {
 
-    static String getCurrencyFromYear(Context c, int year) {
-        if (year >= 2002) return c.getString(R.string.euros);
-        if (year >= 1960) return c.getString(R.string.francs);
-        return c.getString(R.string.oldFrancs);
-    }
-
-    static void hideSoftKeyboard(View v) {
+    public static void hideSoftKeyboard(View v) {
         InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
-    static void showCredits(Activity activity) {
+    public static void showCredits(Activity activity) {
         ((TextView) new AlertDialog.Builder(activity)
                 .setTitle(R.string.appName)
                 .setIcon(R.drawable.ic_launcher)
@@ -41,7 +38,7 @@ public class Utils {
                 .setMovementMethod(LinkMovementMethod.getInstance());
     }
 
-    static String formatNumber(Context c, double number) {
+    public static String formatNumber(Context c, double number) {
         DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(c.getResources().getConfiguration().locale);
         return formatter.format(number);
     }
