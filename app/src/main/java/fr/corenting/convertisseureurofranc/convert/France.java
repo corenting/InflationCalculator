@@ -1,46 +1,14 @@
 package fr.corenting.convertisseureurofranc.convert;
 
 import android.content.Context;
-import android.util.Log;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 import fr.corenting.convertisseureurofranc.R;
 
 public class France extends ConvertAbstract {
 
-    private HashMap<Integer, Float> values = new LinkedHashMap<>();
-
     public France(Context context) {
         this.context = context;
-        //Load the values from the csv file
-        InputStream inputStream = context.getResources().openRawResource(R.raw.converter_values);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        String line;
-        boolean first = true;
-        try {
-            while ((line = reader.readLine()) != null) {
-                String[] separatedLine = line.split(";");
-                int year = Integer.parseInt(separatedLine[0]);
-                float value = Float.parseFloat(separatedLine[1]);
-                values.put(year, value);
-
-                //For the first entry, get the year to use for the spinners
-                if (first) {
-                    first = false;
-                    latestYear = Integer.parseInt(separatedLine[0]);
-                }
-            }
-            reader.close();
-        } catch (IOException e) {
-            Log.d("France", e.getMessage());
-            e.printStackTrace();
-        }
+        loadValuesFromCSV(R.raw.fr_values);
     }
 
     public double convertFunction(int yearOfOrigin, int yearOfResult, float amount) {

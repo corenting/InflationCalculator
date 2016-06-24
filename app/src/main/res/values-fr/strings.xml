@@ -14,5 +14,6 @@
     <string name="francs">francs</string>
     <string name="oldFrancs">anciens francs</string>
     <string name="actionDarkTheme">Thème sombre</string>
+    <string name="dollars">dollars</string>
 
 </resources>
