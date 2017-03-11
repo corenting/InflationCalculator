@@ -16,5 +16,6 @@
     <string name="preferenceDarkThemeKey" translatable="false">darkTheme</string>
     <string name="oldFrancs">old francs</string>
     <string name="dollars">dollars</string>
+    <string name="currency">Country:</string>
 
 </resources>

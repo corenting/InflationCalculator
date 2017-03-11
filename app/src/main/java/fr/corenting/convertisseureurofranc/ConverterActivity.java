@@ -17,11 +17,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 import fr.corenting.convertisseureurofranc.convert.ConvertAbstract;
 import fr.corenting.convertisseureurofranc.convert.France;
+import fr.corenting.convertisseureurofranc.convert.USA;
 import fr.corenting.convertisseureurofranc.utils.Utils;
 
 public class ConverterActivity extends AppCompatActivity {
@@ -31,6 +33,7 @@ public class ConverterActivity extends AppCompatActivity {
 
     private Spinner originSpinner;
     private Spinner resultSpinner;
+    private Spinner currencySpinner;
     private TextView currencyOriginTextView;
     private TextView currencyResultTextView;
     private Button convertButton;
@@ -52,21 +55,44 @@ public class ConverterActivity extends AppCompatActivity {
         //Initialize the converter
         converter = new France(this);
 
-        //Initialize the spinners and buttons
-        initSpinners();
-        initButtons();
-    }
-
-    private void initSpinners() {
+        // Binding
         originSpinner = (Spinner) findViewById(R.id.yearOfOriginSpinner);
         resultSpinner = (Spinner) findViewById(R.id.yearOfResultSpinner);
+        currencySpinner = (Spinner) findViewById(R.id.currencySpinner);
         currencyOriginTextView = (TextView) findViewById(R.id.currencyOriginTextView);
         currencyResultTextView = (TextView) findViewById(R.id.currencyResultTextView);
 
+        //Initialize the years spinners and the buttons
+        initSpinners();
+        initButtons();
+
+        //Set currency spinner content
+        List<String> currenciesList = Arrays.asList("France (euros, francs, anciens francs)", "USA (dollars)");
+        setSpinnerAdapter(currencySpinner, currenciesList);
+        currencySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                if (pos == 0) {
+                    converter = new France(parent.getContext());
+                    initSpinners();
+                } else {
+                    converter = new USA(parent.getContext());
+                    initSpinners();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+    }
+
+    private void initSpinners() {
+
         //Populate the spinners with a list of years
-        List<Integer> yearsList = new LinkedList<>();
-        for (int i = converter.latestYear; i >= 1901; i--) {
-            yearsList.add(i);
+        List<String> yearsList = new LinkedList<>();
+        for (int i = converter.latestYear; i >= converter.firstYear; i--) {
+            yearsList.add(String.valueOf(i));
         }
         setSpinnerAdapter(originSpinner, yearsList);
         setSpinnerAdapter(resultSpinner, yearsList);
@@ -116,8 +142,9 @@ public class ConverterActivity extends AppCompatActivity {
         });
     }
 
-    private void setSpinnerAdapter(Spinner s, List<Integer> items) {
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
+    private void setSpinnerAdapter(Spinner s, List<String> items) {
+        s.setAdapter(null);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         s.setAdapter(adapter);
     }

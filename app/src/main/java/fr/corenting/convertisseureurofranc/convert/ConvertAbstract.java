@@ -10,15 +10,15 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-import fr.corenting.convertisseureurofranc.R;
-
 public abstract class ConvertAbstract {
 
     public int latestYear;
+    public int firstYear;
     Context context;
     HashMap<Integer, Float> values = new LinkedHashMap<>();
 
     public abstract double convertFunction(int yearOfOrigin, int yearOfResult, float amount);
+
     public abstract String getCurrencyFromYear(int year);
 
     void loadValuesFromCSV(int fileID) {
@@ -26,19 +26,18 @@ public abstract class ConvertAbstract {
         InputStream inputStream = context.getResources().openRawResource(fileID);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line;
-        boolean first = true;
+        latestYear = Integer.MIN_VALUE;
+        firstYear = Integer.MAX_VALUE;
         try {
             while ((line = reader.readLine()) != null) {
                 String[] separatedLine = line.split(";");
                 int year = Integer.parseInt(separatedLine[0]);
+                if (year > latestYear)
+                    latestYear = year;
+                if (year < firstYear)
+                    firstYear = year;
                 float value = Float.parseFloat(separatedLine[1]);
                 values.put(year, value);
-
-                //For the first entry, get the year to use for the spinners
-                if (first) {
-                    first = false;
-                    latestYear = Integer.parseInt(separatedLine[0]);
-                }
             }
             reader.close();
         } catch (IOException e) {

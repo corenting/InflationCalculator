@@ -15,7 +15,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/currency"
+            android:id="@+id/currencyTextView" />
+
+        <Spinner
+            android:id="@+id/currencySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignBaseline="@id/currencyTextView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignRight="@+id/currencyOriginTextView"
+            android:layout_alignEnd="@+id/currencyOriginTextView"
+            android:layout_toRightOf="@+id/currencyTextView"
+            android:layout_toEndOf="@+id/currencyTextView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/sumToConvert"
+            android:layout_below="@+id/currencyTextView"
             android:id="@+id/sumToConvertTextView" />
 
         <EditText
@@ -33,7 +55,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AF"
+
             android:id="@+id/currencyOriginTextView"
             android:layout_below="@+id/amountEditText"
             android:layout_alignParentRight="true"
@@ -116,7 +138,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="AF"
             android:id="@+id/currencyResultTextView"
             android:layout_below="@+id/resultEditText"
             android:layout_alignParentRight="true"
