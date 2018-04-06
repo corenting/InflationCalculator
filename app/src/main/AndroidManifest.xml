@@ -7,6 +7,9 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/appName"
         android:theme="@style/AppThemeDark" >
+
+        <meta-data android:name="android.max_aspect" android:value="2.1" />
+        
         <activity
             android:name=".ConverterActivity"
             android:label="@string/appName" >
