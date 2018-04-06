@@ -4,7 +4,7 @@ Cette application permet de calculer le pouvoir d'achat d'une somme pour la Fran
 
 ## Sources de données ##
 - France : INSEE, http://www.insee.fr/fr/themes/calcul-pouvoir-achat.asp
-- USA : Bureau of Labor Statistics (CPI-U), http://www.bls.gov/cpi/tables.htm
+- USA : Bureau of Labor Statistics (Historical CPI-U), http://www.bls.gov/cpi/tables.htm
 
 ## Téléchargement ##
 [![Logo Google Play](http://developer.android.com/images/brand/fr_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=fr.corenting.convertisseureurofranc)
