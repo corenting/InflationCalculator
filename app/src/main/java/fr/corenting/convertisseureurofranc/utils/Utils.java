@@ -26,7 +26,7 @@ public class Utils {
     public static void showCredits(Activity activity) {
         ((TextView) new AlertDialog.Builder(activity)
                 .setTitle(R.string.appName)
-                .setIcon(R.drawable.ic_launcher)
+                .setIcon(R.mipmap.ic_launcher)
                 .setMessage(Html.fromHtml(activity.getString(R.string.aboutText) + BuildConfig.VERSION_NAME))
                 .setNegativeButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

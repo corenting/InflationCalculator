@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,7 +34,6 @@ public class ConverterActivity extends AppCompatActivity {
 
     private Spinner originSpinner;
     private Spinner resultSpinner;
-    private Spinner currencySpinner;
     private TextView currencyOriginTextView;
     private TextView currencyResultTextView;
     private Button convertButton;
@@ -45,9 +45,9 @@ public class ConverterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (prefs.getBoolean(getString(R.string.preferenceDarkThemeKey), false)) {
-            setTheme(R.style.AppThemeDark);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
-            setTheme(R.style.AppTheme);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_converter);
@@ -56,11 +56,11 @@ public class ConverterActivity extends AppCompatActivity {
         converter = new France(this);
 
         // Binding
-        originSpinner = (Spinner) findViewById(R.id.yearOfOriginSpinner);
-        resultSpinner = (Spinner) findViewById(R.id.yearOfResultSpinner);
-        currencySpinner = (Spinner) findViewById(R.id.currencySpinner);
-        currencyOriginTextView = (TextView) findViewById(R.id.currencyOriginTextView);
-        currencyResultTextView = (TextView) findViewById(R.id.currencyResultTextView);
+        originSpinner = findViewById(R.id.yearOfOriginSpinner);
+        resultSpinner = findViewById(R.id.yearOfResultSpinner);
+        Spinner currencySpinner = findViewById(R.id.currencySpinner);
+        currencyOriginTextView = findViewById(R.id.currencyOriginTextView);
+        currencyResultTextView = findViewById(R.id.currencyResultTextView);
 
         //Initialize the years spinners and the buttons
         initSpinners();
@@ -104,13 +104,13 @@ public class ConverterActivity extends AppCompatActivity {
 
     private void initButtons() {
         //Convert when the button is clicked
-        convertButton = (Button) findViewById(R.id.convertButton);
+        convertButton = findViewById(R.id.convertButton);
         convertButton.setImeActionLabel(getString(R.string.convertButton), KeyEvent.KEYCODE_ENTER);
-        resultEditText = (EditText) findViewById(R.id.resultEditText);
+        resultEditText = findViewById(R.id.resultEditText);
         resultEditText.setKeyListener(null); //Make the EditText widget read only
 
         //Click button when using enter on the keyboard
-        amountEditText = (EditText) findViewById(R.id.amountEditText);
+        amountEditText = findViewById(R.id.amountEditText);
         amountEditText.setOnKeyListener(new View.OnKeyListener() {
 
             @Override
