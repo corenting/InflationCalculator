@@ -1,10 +1,12 @@
-# Calculateur d'inflation #
+# Inflation calculator #
 ## Description ##
-Cette application permet de calculer le pouvoir d'achat d'une somme pour la France (en Euros, en Francs ou en anciens Francs) ou les Etats-Unis (en dollars) d’une année donnée en une somme équivalente d’une autre année, en prenant en compte l’inflation entre ces deux années.
+This converter allows you to calculate the buying power in a specified year of any amount of money (for France and for the USA) to an equivalent amount in another year by taking into account the inflation rate between these two years.<br />
 
-## Sources de données ##
-- France : INSEE, http://www.insee.fr/fr/themes/calcul-pouvoir-achat.asp
-- USA : Bureau of Labor Statistics (Historical CPI-U), http://www.bls.gov/cpi/tables.htm
+To achieve this, this app uses data from from the INSEE (https://www.insee.fr/fr/statistiques/serie/001643154) and from the Bureau of Labor Statistics (https://www.bls.gov/cpi/)
 
-## Téléchargement ##
-[![Logo Google Play](http://developer.android.com/images/brand/fr_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=fr.corenting.convertisseureurofranc)
+## Data sources ##
+- France : INSEE, https://www.insee.fr/fr/statistiques/serie/001643154
+- USA : Bureau of Labor Statistics (Historical CPI-U), https://www.bls.gov/cpi/
+
+## Download ##
+[![Google Play](http://developer.android.com/images/brand/fr_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=fr.corenting.convertisseureurofranc)
