@@ -1,8 +1,6 @@
 # Inflation calculator #
 ## Description ##
-This converter allows you to calculate the buying power in a specified year of any amount of money (for France and for the USA) to an equivalent amount in another year by taking into account the inflation rate between these two years.<br />
-
-To achieve this, this app uses data from from the INSEE (https://www.insee.fr/fr/statistiques/serie/001643154) and from the Bureau of Labor Statistics (https://www.bls.gov/cpi/)
+This converter allows you to calculate the buying power in a specified year of any amount of money (for France and for the USA) to an equivalent amount in another year by taking into account the inflation rate between these two years.
 
 ## Data sources ##
 - France : INSEE, https://www.insee.fr/fr/statistiques/serie/001643154
