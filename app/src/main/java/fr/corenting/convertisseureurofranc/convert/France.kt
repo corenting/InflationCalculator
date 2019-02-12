@@ -4,36 +4,35 @@ import android.content.Context
 
 import fr.corenting.convertisseureurofranc.R
 
-class France(context: Context) : ConvertAbstract() {
+class France(context: Context) : ConvertAbstract(context, R.raw.fr_values) {
 
-    init {
-        this.setContext(context)
-        loadValuesFromCSV(R.raw.fr_values)
-    }
+    override fun convertFunction(yearOfOrigin: Int, yearOfResult: Int, amount: Float): Float {
+        var newAmount = amount
+        if (yearOfOrigin == yearOfResult) return amount
 
-    override fun convertFunction(yearOfOrigin: Int, yearOfResult: Int, amount: Float): Double {
-        var amount = amount
-        if (yearOfOrigin == yearOfResult) return amount.toDouble()
-        val multiplier = getValues().get(yearOfResult) / getValues().get(yearOfOrigin)
+        val multiplier = values[yearOfResult]!! / values[yearOfOrigin]!!
         //Convert values if currency is different
         if (yearOfResult < 1960) {
-            amount *= 100f
+            newAmount *= 100f
         }
         if (yearOfOrigin < 1960) {
-            amount /= 100f
+            newAmount /= 100f
         }
         if (yearOfResult < 2002) {
-            amount *= 6.55957f
+            newAmount *= 6.55957f
         }
         if (yearOfOrigin < 2002) {
-            amount *= 0.15244f
+            newAmount *= 0.15244f
         }
 
-        return amount * multiplier
+        return newAmount * multiplier
     }
 
     override fun getCurrencyFromYear(year: Int): String {
-        if (year >= 2002) return getContext().getString(R.string.euros)
-        return if (year >= 1960) getContext().getString(R.string.francs) else getContext().getString(R.string.oldFrancs)
+        return when {
+            year >= 2002 -> context.getString(R.string.euros)
+            year >= 1960 -> context.getString(R.string.francs)
+            else -> context.getString(R.string.oldFrancs)
+        }
     }
 }

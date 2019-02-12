@@ -1,49 +1,47 @@
 package fr.corenting.convertisseureurofranc.convert
 
 import android.content.Context
-import android.util.Log
-
 import java.io.BufferedReader
-import java.io.IOException
-import java.io.InputStream
 import java.io.InputStreamReader
-import java.util.HashMap
-import java.util.LinkedHashMap
+import java.util.*
 
-abstract class ConvertAbstract {
+abstract class ConvertAbstract(protected val context: Context, private val fileId: Int) {
 
     var latestYear: Int = 0
     var firstYear: Int = 0
-    internal var context: Context? = null
-    internal var values: HashMap<Int, Float> = LinkedHashMap()
+    protected var values: HashMap<Int, Float> = LinkedHashMap()
 
-    abstract fun convertFunction(yearOfOrigin: Int, yearOfResult: Int, amount: Float): Double
+    init {
+        loadValuesFromCSV()
+    }
+
+    abstract fun convertFunction(yearOfOrigin: Int, yearOfResult: Int, amount: Float): Float
 
     abstract fun getCurrencyFromYear(year: Int): String
 
-    internal fun loadValuesFromCSV(fileID: Int) {
+    private fun loadValuesFromCSV() {
         //Load the values from the csv file
-        val inputStream = context!!.resources.openRawResource(fileID)
-        val reader = BufferedReader(InputStreamReader(inputStream))
-        var line: String
+        val inputStream = context.resources.openRawResource(fileId)
+        val iterator = BufferedReader(InputStreamReader(inputStream)).lineSequence().iterator()
+
         latestYear = Integer.MIN_VALUE
         firstYear = Integer.MAX_VALUE
-        try {
-            while ((line = reader.readLine()) != null) {
-                val separatedLine = line.split(";".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-                val year = Integer.parseInt(separatedLine[0])
-                if (year > latestYear)
-                    latestYear = year
-                if (year < firstYear)
-                    firstYear = year
-                val value = java.lang.Float.parseFloat(separatedLine[1])
-                values[year] = value
-            }
-            reader.close()
-        } catch (e: IOException) {
-            Log.d("CSV parsing error", e.message)
-            e.printStackTrace()
-        }
 
+        while (iterator.hasNext()) {
+            val line = iterator.next()
+
+            val separatedLine = line
+                    .split(";".toRegex())
+                    .dropLastWhile { it.isEmpty() }
+                    .toTypedArray()
+
+            val year = Integer.parseInt(separatedLine[0])
+            if (year > latestYear)
+                latestYear = year
+            if (year < firstYear)
+                firstYear = year
+            val value = java.lang.Float.parseFloat(separatedLine[1])
+            values[year] = value
+        }
     }
 }

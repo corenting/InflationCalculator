@@ -3,18 +3,19 @@ package fr.corenting.convertisseureurofranc.utils
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
+import android.os.Build
 import android.text.Html
+import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-
-import java.text.DecimalFormat
-import java.text.NumberFormat
-
 import fr.corenting.convertisseureurofranc.BuildConfig
 import fr.corenting.convertisseureurofranc.R
+import java.text.DecimalFormat
+import java.text.NumberFormat
+import java.util.*
+
 
 object Utils {
 
@@ -27,14 +28,33 @@ object Utils {
         (AlertDialog.Builder(activity)
                 .setTitle(R.string.appName)
                 .setIcon(R.mipmap.ic_launcher)
-                .setMessage(Html.fromHtml(activity.getString(R.string.aboutText) + BuildConfig.VERSION_NAME))
-                .setNegativeButton("OK") { dialog, which -> dialog.dismiss() }
+                .setMessage(fromHtmlWrapped(activity.getString(R.string.aboutText) +
+                        BuildConfig.VERSION_NAME))
+                .setNegativeButton("OK") { dialog, _ -> dialog.dismiss() }
                 .show()
                 .findViewById<View>(android.R.id.message) as TextView).movementMethod = LinkMovementMethod.getInstance()
     }
 
-    fun formatNumber(c: Context, number: Double): String {
-        val formatter = NumberFormat.getInstance(c.resources.configuration.locale) as DecimalFormat
+    fun formatNumber(c: Context, number: Float): String {
+        val formatter = NumberFormat.getInstance(getCurrentLocale(c)) as DecimalFormat
         return formatter.format(number)
+    }
+
+    private fun fromHtmlWrapped(content: String): Spanned {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(content, Html.FROM_HTML_MODE_COMPACT)
+        } else {
+            @Suppress("DEPRECATION")
+            Html.fromHtml(content)
+        }
+    }
+
+    private fun getCurrentLocale(ctx: Context): Locale {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            ctx.resources.configuration.locales.get(0)
+        } else {
+            @Suppress("DEPRECATION")
+            ctx.resources.configuration.locale
+        }
     }
 }
