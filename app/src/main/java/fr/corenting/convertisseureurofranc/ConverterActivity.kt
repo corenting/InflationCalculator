@@ -2,20 +2,18 @@ package fr.corenting.convertisseureurofranc
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.PreferenceManager
 import fr.corenting.convertisseureurofranc.convert.ConvertAbstract
 import fr.corenting.convertisseureurofranc.convert.France
 import fr.corenting.convertisseureurofranc.convert.USA
 import fr.corenting.convertisseureurofranc.utils.Utils
 import kotlinx.android.synthetic.main.activity_converter.*
-import java.util.*
 
 class ConverterActivity : AppCompatActivity() {
 
@@ -25,10 +23,9 @@ class ConverterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // Dark theme
         prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        if (prefs.getBoolean(getString(R.string.preferenceDarkThemeKey), false)) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        when {
+            prefs.getBoolean(getString(R.string.preferenceDarkThemeKey), false) -> setTheme(R.style.AppThemeDark)
+            else -> setTheme(R.style.AppTheme)
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_converter)
@@ -41,8 +38,8 @@ class ConverterActivity : AppCompatActivity() {
         initButtons()
 
         //Set currency spinner content
-        val currenciesList = Arrays
-                .asList(getString(R.string.france_currencies), getString(R.string.usa_currencies))
+        val currenciesList = listOf(getString(R.string.france_currencies),
+                getString(R.string.usa_currencies))
         setSpinnerAdapter(currencySpinner, currenciesList)
         currencySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
@@ -82,14 +79,15 @@ class ConverterActivity : AppCompatActivity() {
 
     private fun initSpinners() {
         //Populate the spinners with a list of years
-        val yearsList = (converter.latestYear downTo converter.firstYear)
-                .mapTo(LinkedList()) { it.toString() }
-        setSpinnerAdapter(yearOfOriginSpinner!!, yearsList)
-        setSpinnerAdapter(yearOfResultSpinner!!, yearsList)
+        val yearsList = (converter.latestYear downTo converter.firstYear).toList().map {
+            it.toString()
+        }
+        setSpinnerAdapter(yearOfOriginSpinner, yearsList)
+        setSpinnerAdapter(yearOfResultSpinner, yearsList)
 
         //Add an onItemSelected listener to change the currency text according to the year
-        setSpinnerListener(yearOfOriginSpinner!!, currencyOriginTextView)
-        setSpinnerListener(yearOfResultSpinner!!, currencyResultTextView)
+        setSpinnerListener(yearOfOriginSpinner, currencyOriginTextView)
+        setSpinnerListener(yearOfResultSpinner, currencyResultTextView)
     }
 
     private fun initButtons() {
@@ -100,7 +98,7 @@ class ConverterActivity : AppCompatActivity() {
         //Click button when using enter on the keyboard
         amountEditText.setOnKeyListener(View.OnKeyListener { _, _, event ->
             if (event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER) {
-                convertButton!!.performClick()
+                convertButton.performClick()
                 return@OnKeyListener false
             }
             false
@@ -131,12 +129,12 @@ class ConverterActivity : AppCompatActivity() {
         s.adapter = adapter
     }
 
-    private fun setSpinnerListener(spinner: Spinner, textView: TextView?) {
+    private fun setSpinnerListener(spinner: Spinner, textView: TextView) {
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 if (parent != null) {
                     val year = Integer.parseInt(parent.getItemAtPosition(pos).toString())
-                    textView!!.text = converter.getCurrencyFromYear(year)
+                    textView.text = converter.getCurrencyFromYear(year)
                 }
             }
 

@@ -3,36 +3,26 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+    compileSdkVersion 29
+    buildToolsVersion "29.0.1"
 
     defaultConfig {
         applicationId "fr.corenting.convertisseureurofranc"
         minSdkVersion 14
-        targetSdkVersion 28
-        versionCode 9
-        versionName "2.0"
+        targetSdkVersion 29
+        versionCode 10
+        versionName "2.1"
     }
 
-    signingConfigs {
-        release {
-            try {
-                storeFile file(KEYSTORE_FILE)
-                storePassword KEYSTORE_PASSWORD
-                keyAlias KEY_ALIAS
-                keyPassword KEY_PASSWORD
-            }
-            catch (ex) {
-                throw ex
-            }
-        }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
 
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
-            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -40,8 +30,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'com.google.android.material:material:1.1.0-alpha03'
+    implementation 'androidx.core:core:1.0.2'
+    implementation 'androidx.preference:preference:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
