@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="appName">Inflation Calculator</string>
     <string name="sumToConvert">Amount to convert:</string>
     <string name="yearOfOrigin">in:</string>
@@ -19,5 +18,4 @@
     <string name="currency">Country:</string>
     <string name="france_currencies" translatable="false">France (euros, francs, anciens francs)</string>
     <string name="usa_currencies" translatable="false">USA (dollars)</string>
-
 </resources>
