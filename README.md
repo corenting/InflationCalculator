@@ -1,6 +1,6 @@
 # Inflation Calculator #
 
-## Description ##
+![Azure DevOps builds](https://img.shields.io/azure-devops/build/corenting/InflationCalculator/7) ![Azure DevOps tests (compact)](https://img.shields.io/azure-devops/tests/corenting/InflationCalculator/7?compact_message) ![GitHub](https://img.shields.io/github/license/corenting/InflationCalculator)
 
 This inflation calculator allows you to check how prices have changed over time.
 It supports the following countries :
