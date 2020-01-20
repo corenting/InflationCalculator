@@ -1,0 +1,2 @@
+- Added 2019 to the USA data
+- Updated 2016 data for the USA data following an adjustment
