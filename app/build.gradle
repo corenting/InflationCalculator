@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "fr.corenting.convertisseureurofranc"
@@ -39,11 +39,16 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.core:core:1.2.0'
-    implementation 'androidx.preference:preference:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0'
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    // Dependencies
+    implementation 'androidx.core:core:1.2.0'
+    implementation 'androidx.core:core-ktx:1.2.0'
+    implementation 'androidx.preference:preference-ktx:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0'
+
+    // Tests
     testImplementation 'androidx.test:core:1.2.0'
     testImplementation 'androidx.test:core-ktx:1.2.0'
     testImplementation 'junit:junit:4.13'

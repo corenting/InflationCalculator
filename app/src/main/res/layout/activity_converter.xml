@@ -1,8 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollView"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -51,6 +50,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:ems="10"
+            android:importantForAutofill="no"
             android:inputType="numberDecimal" />
 
         <TextView
@@ -134,6 +134,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:ems="10"
+            android:importantForAutofill="no"
             android:inputType="numberDecimal" />
 
         <TextView

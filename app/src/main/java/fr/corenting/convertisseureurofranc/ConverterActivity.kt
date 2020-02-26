@@ -43,9 +43,9 @@ class ConverterActivity : AppCompatActivity() {
         setSpinnerAdapter(currencySpinner, currenciesList)
         currencySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                when (pos) {
-                    0 -> converter = France(applicationContext)
-                    else -> converter = USA(applicationContext)
+                converter = when (pos) {
+                    0 -> France(applicationContext)
+                    else -> USA(applicationContext)
                 }
                 initSpinners()
             }

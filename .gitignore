@@ -30,6 +30,5 @@ app/build/
 
 .settings/*
 project.properties
-gradle.properties
 target
 res/xml/tracker.xml
