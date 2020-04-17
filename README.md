@@ -12,4 +12,6 @@ It supports the following countries :
 - USA : Bureau of Labor Statistics (Historical CPI-U), https://www.bls.gov/cpi/
 
 ## Download ##
-[![Google Play](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=fr.corenting.convertisseureurofranc&utm_source=github_readme&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
+
+- [Google Play](https://play.google.com/store/apps/details?id=fr.corenting.convertisseureurofranc&utm_source=github_readme)
+- [Github releases](https://github.com/corenting/InflationCalculator/releases/latest)
