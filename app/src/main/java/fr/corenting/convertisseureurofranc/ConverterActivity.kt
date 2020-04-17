@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.PreferenceManager
 import fr.corenting.convertisseureurofranc.convert.ConvertAbstract
 import fr.corenting.convertisseureurofranc.convert.France
@@ -24,8 +25,15 @@ class ConverterActivity : AppCompatActivity() {
         // Dark theme
         prefs = PreferenceManager.getDefaultSharedPreferences(this)
         when {
-            prefs.getBoolean(getString(R.string.preferenceDarkThemeKey), false) -> setTheme(R.style.AppThemeDark)
-            else -> setTheme(R.style.AppTheme)
+            prefs.getBoolean(
+                getString(R.string.preferenceDarkThemeKey),
+                false
+            ) -> AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_YES
+            )
+            else -> AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_NO
+            )
         }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_converter)
@@ -38,8 +46,10 @@ class ConverterActivity : AppCompatActivity() {
         initButtons()
 
         //Set currency spinner content
-        val currenciesList = listOf(getString(R.string.france_currencies),
-                getString(R.string.usa_currencies))
+        val currenciesList = listOf(
+            getString(R.string.france_currencies),
+            getString(R.string.usa_currencies)
+        )
         setSpinnerAdapter(currencySpinner, currenciesList)
         currencySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
@@ -70,8 +80,14 @@ class ConverterActivity : AppCompatActivity() {
                 editor.putBoolean(getString(R.string.preferenceDarkThemeKey), !item.isChecked)
                 item.isChecked = !item.isChecked
                 editor.apply()
-                finish()
-                startActivity(intent)
+                when {
+                    item.isChecked -> {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                    }
+                    else -> {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                    }
+                }
             }
         }
         return super.onOptionsItemSelected(item)
@@ -111,11 +127,17 @@ class ConverterActivity : AppCompatActivity() {
                 val yearOfOrigin = Integer.parseInt(yearOfOriginSpinner.selectedItem.toString())
                 val yearOfResult = Integer.parseInt(yearOfResultSpinner.selectedItem.toString())
                 val amount = java.lang.Float.parseFloat(amountEditText.text.toString())
-                resultEditText.setText(Utils.formatNumber(this,
-                        converter.convertFunction(yearOfOrigin, yearOfResult, amount)))
+                resultEditText.setText(
+                    Utils.formatNumber(
+                        this,
+                        converter.convertFunction(yearOfOrigin, yearOfResult, amount)
+                    )
+                )
             } catch (e: Exception) {
-                val errorToast = Toast.makeText(this, getString(R.string.errorToast),
-                        Toast.LENGTH_SHORT)
+                val errorToast = Toast.makeText(
+                    this, getString(R.string.errorToast),
+                    Toast.LENGTH_SHORT
+                )
                 errorToast.show()
             }
         }
@@ -123,8 +145,10 @@ class ConverterActivity : AppCompatActivity() {
 
     private fun setSpinnerAdapter(s: Spinner, items: List<String>) {
         s.adapter = null
-        val adapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, items)
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item, items
+        )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         s.adapter = adapter
     }

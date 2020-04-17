@@ -1,7 +1,6 @@
 package fr.corenting.convertisseureurofranc.utils
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
 import android.os.Build
 import android.text.Html
@@ -10,6 +9,7 @@ import android.text.method.LinkMovementMethod
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import fr.corenting.convertisseureurofranc.BuildConfig
 import fr.corenting.convertisseureurofranc.R
 import java.text.DecimalFormat
