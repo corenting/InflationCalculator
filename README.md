@@ -13,5 +13,6 @@ It supports the following countries :
 
 ## Download ##
 
+- [F-Droid](https://f-droid.org/packages/fr.corenting.convertisseureurofranc/)
 - [Google Play](https://play.google.com/store/apps/details?id=fr.corenting.convertisseureurofranc&utm_source=github_readme)
 - [Github releases](https://github.com/corenting/InflationCalculator/releases/latest)
