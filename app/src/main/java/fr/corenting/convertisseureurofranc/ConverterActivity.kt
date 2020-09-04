@@ -62,35 +62,35 @@ class ConverterActivity : AppCompatActivity() {
 
             override fun onNothingSelected(adapterView: AdapterView<*>) {}
         }
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.converter, menu)
         if (prefs.getBoolean(getString(R.string.preferenceDarkThemeKey), false)) {
-            menu.getItem(0).isChecked = true
+            topAppBar.menu.getItem(0).isChecked = true
         }
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_about -> Utils.showCredits(this)
-            R.id.action_dark_theme -> {
-                val editor = prefs.edit()
-                editor.putBoolean(getString(R.string.preferenceDarkThemeKey), !item.isChecked)
-                item.isChecked = !item.isChecked
-                editor.apply()
-                when {
-                    item.isChecked -> {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    }
-                    else -> {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    }
+        topAppBar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_about -> {
+                    Utils.showCredits(this)
+                    true
                 }
+                R.id.action_dark_theme -> {
+                    val editor = prefs.edit()
+                    editor.putBoolean(getString(R.string.preferenceDarkThemeKey), !menuItem.isChecked)
+                    menuItem.isChecked = !menuItem.isChecked
+                    editor.apply()
+                    when {
+                        menuItem.isChecked -> {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        }
+                        else -> {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        }
+                    }
+                    true
+                }
+                else -> false
             }
         }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun initSpinners() {
