@@ -1,16 +1,16 @@
-package fr.corenting.convertisseureurofranc.convert
+package fr.corenting.convertisseureurofranc.converters
 
 import android.content.Context
 
 import fr.corenting.convertisseureurofranc.R
 
-class France(context: Context) : ConvertAbstract(context, R.raw.fr_values) {
+class FranceConverter(context: Context) : ConverterAbstract(context, R.raw.fr_values) {
 
     override fun convertFunction(yearOfOrigin: Int, yearOfResult: Int, amount: Float): Float {
         var newAmount = amount
         if (yearOfOrigin == yearOfResult) return amount
 
-        val multiplier = values[yearOfResult]!! / values[yearOfOrigin]!!
+        val multiplier = getValueForYear(yearOfResult) / getValueForYear(yearOfOrigin)
         //Convert values if currency is different
         if (yearOfResult < 1960) {
             newAmount *= 100f

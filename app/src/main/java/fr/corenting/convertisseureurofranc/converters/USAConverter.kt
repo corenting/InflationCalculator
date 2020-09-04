@@ -1,14 +1,15 @@
-package fr.corenting.convertisseureurofranc.convert
+package fr.corenting.convertisseureurofranc.converters
 
 import android.content.Context
 
 import fr.corenting.convertisseureurofranc.R
 
-class USA(context: Context) : ConvertAbstract(context, R.raw.us_values) {
+class USAConverter(context: Context) : ConverterAbstract(context, R.raw.us_values) {
 
     override fun convertFunction(yearOfOrigin: Int, yearOfResult: Int, amount: Float): Float {
         if (yearOfOrigin == yearOfResult) return amount
-        val multiplier = values[yearOfResult]!! / values[yearOfOrigin]!!
+
+        val multiplier = getValueForYear(yearOfResult) / getValueForYear(yearOfOrigin)
         return amount * multiplier
     }
 

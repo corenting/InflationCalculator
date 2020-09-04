@@ -26,12 +26,16 @@ object Utils {
 
     fun showCredits(activity: Activity): AlertDialog {
         val dialog = AlertDialog.Builder(activity)
-                .setTitle(R.string.appName)
-                .setIcon(R.mipmap.ic_launcher)
-                .setMessage(fromHtmlWrapped(activity.getString(R.string.aboutText) +
-                        BuildConfig.VERSION_NAME))
-                .setNegativeButton("OK") { dialog, _ -> dialog.dismiss() }
-                .show()
+            .setTitle(R.string.appName)
+            .setIcon(R.mipmap.ic_launcher)
+            .setMessage(
+                fromHtmlWrapped(
+                    activity.getString(R.string.aboutText) +
+                            BuildConfig.VERSION_NAME
+                )
+            )
+            .setNegativeButton("OK") { dialog, _ -> dialog.dismiss() }
+            .show()
 
         val messageTextView = dialog.findViewById<View>(android.R.id.message) as TextView
         messageTextView.movementMethod = LinkMovementMethod.getInstance()

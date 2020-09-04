@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="appName">Inflation Calculator</string>
-    <string name="sumToConvert">Amount to convert:</string>
-    <string name="yearOfOrigin">in:</string>
-    <string name="yearOfResult">to:</string>
+    <string name="sumToConvert">Amount to convert (%1$s)</string>
+    <string name="yearOfOrigin">From (year)</string>
+    <string name="yearOfResult">To (year)</string>
     <string name="convertButton">Convert</string>
-    <string name="resultText">Result:</string>
+    <string name="resultText">Result (%1$s)</string>
     <string name="actionAbout">About</string>
     <string name="aboutText"><![CDATA[The transition from old Francs to new Francs is automatic from 1960.<br>The transition from Francs to Euro is automatic from 2002.<br><br>This application was created by corenting.<br><a href="http://www.corenting.fr">Website</a><br><br>Bill icon made by Dave Gandy from <a href="www.flaticon.com">www.flaticon.com</a>.<br><br>Version :&nbsp;]]></string>
     <string name="errorToast">Error during the conversion!</string>
@@ -15,7 +15,8 @@
     <string name="preferenceDarkThemeKey" translatable="false">darkTheme</string>
     <string name="oldFrancs">old francs</string>
     <string name="dollars">dollars</string>
-    <string name="currency">Country:</string>
-    <string name="france_currencies" translatable="false">France (euros, francs, anciens francs)</string>
-    <string name="usa_currencies" translatable="false">USA (dollars)</string>
+    <string name="currency">Currency</string>
+    <string name="france_currencies" translatable="false">Francs and Euros (FRF and EUR)</string>
+    <string name="usa_currencies" translatable="false">US dollars (USD)</string>
+    <string name="no_amount_entered">No amount entered</string>
 </resources>

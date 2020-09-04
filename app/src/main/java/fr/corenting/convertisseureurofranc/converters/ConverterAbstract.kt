@@ -1,11 +1,11 @@
-package fr.corenting.convertisseureurofranc.convert
+package fr.corenting.convertisseureurofranc.converters
 
 import android.content.Context
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.util.*
 
-abstract class ConvertAbstract(protected val context: Context, private val fileId: Int) {
+abstract class ConverterAbstract(protected val context: Context, private val fileId: Int) {
 
     var latestYear: Int = 0
     var firstYear: Int = 0
@@ -19,6 +19,12 @@ abstract class ConvertAbstract(protected val context: Context, private val fileI
 
     abstract fun getCurrencyFromYear(year: Int): String
 
+    protected fun getValueForYear(year: Int): Float {
+        val yearValue = values[year]
+        requireNotNull(yearValue)
+        return yearValue
+    }
+
     private fun loadValuesFromCSV() {
         //Load the values from the csv file
         val inputStream = context.resources.openRawResource(fileId)
@@ -31,9 +37,9 @@ abstract class ConvertAbstract(protected val context: Context, private val fileI
             val line = iterator.next()
 
             val separatedLine = line
-                    .split(";".toRegex())
-                    .dropLastWhile { it.isEmpty() }
-                    .toTypedArray()
+                .split(";".toRegex())
+                .dropLastWhile { it.isEmpty() }
+                .toTypedArray()
 
             val year = Integer.parseInt(separatedLine[0])
             if (year > latestYear)

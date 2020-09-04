@@ -4,11 +4,11 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "30.0.0"
+    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "fr.corenting.convertisseureurofranc"
-        minSdkVersion 14
+        minSdkVersion 17
         targetSdkVersion 29
         versionCode 14
         versionName "2.5"

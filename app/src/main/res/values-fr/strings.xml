@@ -2,9 +2,9 @@
 <resources>
 
     <string name="appName">Calculateur d\'inflation</string>
-    <string name="sumToConvert">Somme à convertir :</string>
-    <string name="yearOfOrigin">de :</string>
-    <string name="yearOfResult">vers :</string>
+    <string name="sumToConvert">Somme à convertir (%1$s)</string>
+    <string name="yearOfOrigin">De (année)</string>
+    <string name="yearOfResult">Vers (année)</string>
     <string name="convertButton">Convertir</string>
     <string name="resultText">Résultat :</string>
     <string name="actionAbout">À propos</string>
@@ -15,6 +15,7 @@
     <string name="oldFrancs">anciens francs</string>
     <string name="actionDarkTheme">Thème sombre</string>
     <string name="dollars">dollars</string>
-    <string name="currency">Pays :</string>
+    <string name="currency">Devise</string>
+    <string name="no_amount_entered">Aucun montant entré</string>
 
 </resources>

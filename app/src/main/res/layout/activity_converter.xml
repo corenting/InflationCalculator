@@ -33,139 +33,111 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingBottom="@dimen/activity_vertical_margin">
 
-            <TextView
-                android:id="@+id/currencyTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/currency"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1" />
-
-            <Spinner
-                android:id="@+id/currencySpinner"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/currencyInput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/currencyTextView"
-                android:layout_alignEnd="@+id/currencyOriginTextView"
-                android:layout_alignRight="@+id/currencyOriginTextView"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_toEndOf="@+id/currencyTextView"
-                android:layout_toRightOf="@+id/currencyTextView" />
+                android:hint="@string/currency"
+                app:startIconDrawable="@drawable/cash">
 
-            <TextView
-                android:id="@+id/sumToConvertTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/currencyTextView"
-                android:layout_marginTop="12dp"
-                android:text="@string/sumToConvert"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                <AutoCompleteTextView
+                    android:id="@+id/currencyAutoComplete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
 
-            <EditText
-                android:id="@+id/amountEditText"
-                android:layout_width="wrap_content"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/sumToConvertInput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/sumToConvertTextView"
+                android:layout_below="@+id/currencyInput"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:ems="10"
-                android:importantForAutofill="no"
-                android:inputType="numberDecimal" />
-
-            <TextView
-                android:id="@+id/currencyOriginTextView"
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/amountEditText"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true" />
-
-            <TextView
-                android:id="@+id/yearOfOriginTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/currencyOriginTextView"
-                android:layout_alignBaseline="@+id/yearOfOriginSpinner"
-                android:text="@string/yearOfOrigin"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-            <Spinner
-                android:id="@+id/yearOfOriginSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/currencyOriginTextView"
-                android:layout_alignStart="@+id/yearOfResultSpinner"
-                android:layout_alignLeft="@+id/yearOfResultSpinner"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="12dp" />
-
-            <TextView
-                android:id="@+id/yearOfResultTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/yearOfOriginSpinner"
-                android:layout_alignBaseline="@+id/yearOfResultSpinner"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:text="@string/yearOfResult"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-            <Spinner
-                android:id="@+id/yearOfResultSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/yearOfOriginSpinner"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
                 android:layout_marginTop="12dp"
-                android:layout_toEndOf="@+id/yearOfResultTextView"
-                android:layout_toRightOf="@+id/yearOfResultTextView" />
+                android:hint="@string/sumToConvert"
+                app:errorEnabled="true"
+                app:startIconDrawable="@drawable/scale_balance">
 
-            <Button
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/sumToConvertText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/yearOfOriginInput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/sumToConvertInput"
+                android:layout_marginTop="12dp"
+                android:hint="@string/yearOfOrigin"
+                app:startIconDrawable="@drawable/calendar">
+
+                <AutoCompleteTextView
+                    android:id="@+id/yearOfOriginAutoComplete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/yearOfResultInput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/yearOfOriginInput"
+                android:layout_marginTop="12dp"
+                android:hint="@string/yearOfResult"
+                app:startIconDrawable="@drawable/calendar">
+
+                <AutoCompleteTextView
+                    android:id="@+id/yearOfResultAutoComplete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/convertButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/yearOfResultSpinner"
+                android:layout_below="@+id/yearOfResultInput"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
                 android:text="@string/convertButton" />
 
-            <TextView
-                android:id="@+id/resultTextView"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/resultInput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/convertButton"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/convertButton"
                 android:layout_marginTop="24dp"
-                android:text="@string/resultText"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                android:hint="@string/resultText"
+                app:startIconDrawable="@drawable/scale_balance">
 
-            <EditText
-                android:id="@+id/resultEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/resultTextView"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:ems="10"
-                android:importantForAutofill="no"
-                android:inputType="numberDecimal" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/resultText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
 
-            <TextView
-                android:id="@+id/currencyResultTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/resultEditText"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </RelativeLayout>
 
