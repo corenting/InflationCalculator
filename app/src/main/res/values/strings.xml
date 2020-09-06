@@ -16,7 +16,7 @@
     <string name="oldFrancs">old francs</string>
     <string name="dollars">dollars</string>
     <string name="currency">Currency</string>
-    <string name="france_currencies" translatable="false">Francs and Euros (FRF and EUR)</string>
-    <string name="usa_currencies" translatable="false">US dollars (USD)</string>
+    <string name="france_currencies">Francs and Euros (FRF and EUR)</string>
+    <string name="usa_currencies">US dollars (USD)</string>
     <string name="no_amount_entered">No amount entered</string>
 </resources>

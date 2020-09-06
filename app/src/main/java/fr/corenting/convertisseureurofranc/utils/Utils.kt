@@ -21,7 +21,7 @@ object Utils {
 
     fun hideSoftKeyboard(v: View): Boolean {
         val imm = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        return imm.hideSoftInputFromWindow(v.windowToken, 0)
+        return imm.hideSoftInputFromWindow(v.applicationWindowToken, 0)
     }
 
     fun showCredits(activity: Activity): AlertDialog {

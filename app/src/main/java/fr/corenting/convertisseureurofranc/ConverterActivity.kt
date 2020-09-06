@@ -6,7 +6,6 @@ import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,8 +22,15 @@ import java.util.*
 
 class ConverterActivity : AppCompatActivity() {
 
+    companion object {
+        private const val converterBundleKey = "converter"
+    }
+
     lateinit var converter: ConverterAbstract
     private lateinit var prefs: SharedPreferences
+
+    // Save position for config change
+    private var currentConverter: Int = 0
 
     private fun handleDarkTheme() {
         // Dark theme
@@ -48,13 +54,6 @@ class ConverterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_converter)
         topAppBar.setOnMenuItemClickListener(this::onMenuItemClickListener)
 
-        // Default converter
-        converter = USAConverter(applicationContext)
-
-        //Initialize the years spinners and the buttons
-        initYearInputs()
-        initButtons()
-
         //Set currency spinner content
         val currenciesList = listOf(
             getString(R.string.usa_currencies),
@@ -67,18 +66,31 @@ class ConverterActivity : AppCompatActivity() {
             }
 
         // Set default currency
-        val currentLocale: Locale = ConfigurationCompat.getLocales(resources.configuration).get(0)
-        if (currentLocale == Locale.FRANCE) {
-            currencyAutoComplete.setText(getString(R.string.france_currencies), false)
+        if (savedInstanceState == null) {
+            val currentLocale: Locale =
+                ConfigurationCompat.getLocales(resources.configuration).get(0)
+            if (currentLocale == Locale.FRANCE) {
+                currencyAutoComplete.setText(getString(R.string.france_currencies), false)
+                onCurrencyItemClickListener(1)
+            } else {
+                currencyAutoComplete.setText(getString(R.string.usa_currencies), false)
+                onCurrencyItemClickListener(0)
+            }
         } else {
-            currencyAutoComplete.setText(getString(R.string.usa_currencies), false)
+            onCurrencyItemClickListener(savedInstanceState.getInt(converterBundleKey))
         }
 
+        initButtons()
 
         if (prefs.getBoolean(getString(R.string.preferenceDarkThemeKey), false)) {
             topAppBar.menu.getItem(0).isChecked = true
         }
+    }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+
+        outState.putInt(converterBundleKey, currentConverter)
     }
 
     private fun onCurrencyItemClickListener(position: Int) {
@@ -86,6 +98,7 @@ class ConverterActivity : AppCompatActivity() {
             0 -> USAConverter(applicationContext)
             else -> FranceConverter(applicationContext)
         }
+        currentConverter = position
         initYearInputs()
     }
 
@@ -178,7 +191,7 @@ class ConverterActivity : AppCompatActivity() {
         autoCompleteTextView: AutoCompleteTextView,
         items: List<String>
     ) {
-        val adapter = ArrayAdapter(this, R.layout.list_item, items)
+        val adapter = AutocompleteAdapter(this, R.layout.list_item, items)
         autoCompleteTextView.setAdapter(adapter)
     }
 
@@ -190,6 +203,7 @@ class ConverterActivity : AppCompatActivity() {
         autoCompleteTextView.onItemClickListener =
             AdapterView.OnItemClickListener { parent, _, position, _ ->
                 if (parent != null) {
+                    Utils.hideSoftKeyboard(parent)
                     val year = Integer.parseInt(parent.getItemAtPosition(position).toString())
                     setCurrencyInputHint(textView, year, stringReference)
                 }
