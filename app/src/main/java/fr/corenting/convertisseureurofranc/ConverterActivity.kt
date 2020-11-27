@@ -16,8 +16,8 @@ import com.google.android.material.textfield.TextInputLayout
 import fr.corenting.convertisseureurofranc.converters.ConverterAbstract
 import fr.corenting.convertisseureurofranc.converters.FranceConverter
 import fr.corenting.convertisseureurofranc.converters.USAConverter
+import fr.corenting.convertisseureurofranc.databinding.ActivityConverterBinding
 import fr.corenting.convertisseureurofranc.utils.Utils
-import kotlinx.android.synthetic.main.activity_converter.*
 import java.util.*
 
 class ConverterActivity : AppCompatActivity() {
@@ -26,8 +26,10 @@ class ConverterActivity : AppCompatActivity() {
         private const val converterBundleKey = "converter"
     }
 
-    lateinit var converter: ConverterAbstract
+    private lateinit var converter: ConverterAbstract
     private lateinit var prefs: SharedPreferences
+    private lateinit var binding: ActivityConverterBinding
+
 
     // Save position for config change
     private var currentConverter: Int = 0
@@ -51,16 +53,18 @@ class ConverterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         handleDarkTheme()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_converter)
-        topAppBar.setOnMenuItemClickListener(this::onMenuItemClickListener)
+        binding = ActivityConverterBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        binding.topAppBar.setOnMenuItemClickListener(this::onMenuItemClickListener)
 
         //Set currency spinner content
         val currenciesList = listOf(
             getString(R.string.usa_currencies),
             getString(R.string.france_currencies)
         )
-        setAutoCompleteAdapter(currencyAutoComplete, currenciesList)
-        currencyAutoComplete.onItemClickListener =
+        setAutoCompleteAdapter(binding.currencyAutoComplete, currenciesList)
+        binding.currencyAutoComplete.onItemClickListener =
             AdapterView.OnItemClickListener { _, _, position, _ ->
                 onCurrencyItemClickListener(position)
             }
@@ -70,10 +74,10 @@ class ConverterActivity : AppCompatActivity() {
             val currentLocale: Locale =
                 ConfigurationCompat.getLocales(resources.configuration).get(0)
             if (currentLocale == Locale.FRANCE) {
-                currencyAutoComplete.setText(getString(R.string.france_currencies), false)
+                binding.currencyAutoComplete.setText(getString(R.string.france_currencies), false)
                 onCurrencyItemClickListener(1)
             } else {
-                currencyAutoComplete.setText(getString(R.string.usa_currencies), false)
+                binding.currencyAutoComplete.setText(getString(R.string.usa_currencies), false)
                 onCurrencyItemClickListener(0)
             }
         } else {
@@ -83,7 +87,7 @@ class ConverterActivity : AppCompatActivity() {
         initButtons()
 
         if (prefs.getBoolean(getString(R.string.preferenceDarkThemeKey), false)) {
-            topAppBar.menu.getItem(0).isChecked = true
+            binding.topAppBar.menu.getItem(0).isChecked = true
         }
     }
 
@@ -134,8 +138,8 @@ class ConverterActivity : AppCompatActivity() {
         }
 
         val textFields = listOf(
-            Triple(yearOfOriginAutoComplete, sumToConvertInput, R.string.sumToConvert),
-            Triple(yearOfResultAutoComplete, resultInput, R.string.resultText)
+            Triple(binding.yearOfOriginAutoComplete, binding.sumToConvertInput, R.string.sumToConvert),
+            Triple(binding.yearOfResultAutoComplete, binding.resultInput, R.string.resultText)
         )
         for ((yearInput, sumInput, hintStringId) in textFields) {
             setAutoCompleteAdapter(yearInput, yearsList)
@@ -149,34 +153,34 @@ class ConverterActivity : AppCompatActivity() {
 
     private fun initButtons() {
         //Convert when the button is clicked
-        convertButton.setImeActionLabel(getString(R.string.convertButton), KeyEvent.KEYCODE_ENTER)
+        binding.convertButton.setImeActionLabel(getString(R.string.convertButton), KeyEvent.KEYCODE_ENTER)
 
         //Click button when using enter on the keyboard
-        sumToConvertText.setOnKeyListener(View.OnKeyListener { _, _, event ->
+        binding.sumToConvertText.setOnKeyListener(View.OnKeyListener { _, _, event ->
             if (event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER) {
-                convertButton.performClick()
+                binding.convertButton.performClick()
                 return@OnKeyListener false
             }
             false
         })
 
         //Setup listeners
-        convertButton.setOnClickListener { v ->
+        binding.convertButton.setOnClickListener { v ->
             try {
-                sumToConvertInput.error = null
+                binding.sumToConvertInput.error = null
                 Utils.hideSoftKeyboard(v)
-                val yearOfOrigin = Integer.parseInt(yearOfOriginAutoComplete.text.toString())
-                val yearOfResult = Integer.parseInt(yearOfResultAutoComplete.text.toString())
-                val amount = java.lang.Float.parseFloat(sumToConvertText.text.toString())
-                resultText.setText(
+                val yearOfOrigin = Integer.parseInt(binding.yearOfOriginAutoComplete.text.toString())
+                val yearOfResult = Integer.parseInt(binding.yearOfResultAutoComplete.text.toString())
+                val amount = java.lang.Float.parseFloat(binding.sumToConvertText.text.toString())
+                binding.resultText.setText(
                     Utils.formatNumber(
                         this,
                         converter.convertFunction(yearOfOrigin, yearOfResult, amount)
                     )
                 )
             } catch (e: Exception) {
-                if (sumToConvertText.text == null || sumToConvertText.text.toString() == "") {
-                    sumToConvertInput.error = getString(R.string.no_amount_entered)
+                if (binding.sumToConvertText.text == null || binding.sumToConvertText.text.toString() == "") {
+                    binding.sumToConvertInput.error = getString(R.string.no_amount_entered)
                 }
                 val errorToast = Toast.makeText(
                     this, getString(R.string.errorToast),
