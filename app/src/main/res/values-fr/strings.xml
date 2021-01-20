@@ -17,7 +17,7 @@
     <string name="dollars">dollars</string>
     <string name="currency">Devise</string>
     <string name="no_amount_entered">Aucun montant entré</string>
-    <string name="usa_currencies">Dollars US (USD)</string>
-    <string name="france_currencies">Francs et Euros (FRF et EUR)</string>
+    <string name="usa_currencies">Dollars US (USA)</string>
+    <string name="france_currencies">Euros et Francs (France)</string>
 
 </resources>
