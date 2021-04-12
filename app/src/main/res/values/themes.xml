@@ -9,7 +9,7 @@
     </style>
 
     <style name="AppTheme.Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
-        <!-- color used by navigation icon and overflow icon -->
         <item name="colorOnPrimary">@android:color/white</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.DayNight</item>
     </style>
 </resources>

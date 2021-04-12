@@ -13,11 +13,14 @@
     <string name="euros">euros</string>
     <string name="francs">francs</string>
     <string name="oldFrancs">anciens francs</string>
-    <string name="actionDarkTheme">Thème sombre</string>
     <string name="dollars">dollars</string>
     <string name="currency">Devise</string>
     <string name="no_amount_entered">Aucun montant entré</string>
     <string name="usa_currencies">Dollars US (USA)</string>
     <string name="france_currencies">Euros et Francs (France)</string>
+    <string name="theme">Thème</string>
+    <string name="theme_light">Clair</string>
+    <string name="theme_dark">Sombre</string>
+    <string name="theme_system">Système</string>
 
 </resources>

@@ -1,6 +1,5 @@
 package fr.corenting.convertisseureurofranc
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.MenuItem
@@ -11,12 +10,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.ConfigurationCompat
-import androidx.preference.PreferenceManager
 import com.google.android.material.textfield.TextInputLayout
 import fr.corenting.convertisseureurofranc.converters.ConverterAbstract
 import fr.corenting.convertisseureurofranc.converters.FranceConverter
 import fr.corenting.convertisseureurofranc.converters.USAConverter
 import fr.corenting.convertisseureurofranc.databinding.ActivityConverterBinding
+import fr.corenting.convertisseureurofranc.utils.ThemeUtils
 import fr.corenting.convertisseureurofranc.utils.Utils
 import java.util.*
 
@@ -27,32 +26,18 @@ class ConverterActivity : AppCompatActivity() {
     }
 
     private lateinit var converter: ConverterAbstract
-    private lateinit var prefs: SharedPreferences
     private lateinit var binding: ActivityConverterBinding
 
 
     // Save position for config change
     private var currentConverter: Int = 0
 
-    private fun handleDarkTheme() {
-        // Dark theme
-        prefs = PreferenceManager.getDefaultSharedPreferences(this)
-        when {
-            prefs.getBoolean(
-                getString(R.string.preferenceDarkThemeKey),
-                false
-            ) -> AppCompatDelegate.setDefaultNightMode(
-                AppCompatDelegate.MODE_NIGHT_YES
-            )
-            else -> AppCompatDelegate.setDefaultNightMode(
-                AppCompatDelegate.MODE_NIGHT_NO
-            )
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        handleDarkTheme()
+        // Theme and creation
+        AppCompatDelegate.setDefaultNightMode(ThemeUtils.getThemeToUse(this))
         super.onCreate(savedInstanceState)
+
+        // Binding and view
         binding = ActivityConverterBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
@@ -84,11 +69,8 @@ class ConverterActivity : AppCompatActivity() {
             onCurrencyItemClickListener(savedInstanceState.getInt(converterBundleKey))
         }
 
+        binding.topAppBar.menu.findItem(ThemeUtils.getMenuIdForCurrentTheme(this)).isChecked = true
         initButtons()
-
-        if (prefs.getBoolean(getString(R.string.preferenceDarkThemeKey), false)) {
-            binding.topAppBar.menu.getItem(0).isChecked = true
-        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -107,27 +89,18 @@ class ConverterActivity : AppCompatActivity() {
     }
 
     private fun onMenuItemClickListener(menuItem: MenuItem): Boolean {
-        when (menuItem.itemId) {
+        return when (menuItem.itemId) {
             R.id.action_about -> {
                 Utils.showCredits(this)
-                return true
+                true
             }
-            R.id.action_dark_theme -> {
-                val editor = prefs.edit()
-                editor.putBoolean(getString(R.string.preferenceDarkThemeKey), !menuItem.isChecked)
-                menuItem.isChecked = !menuItem.isChecked
-                editor.apply()
-                when {
-                    menuItem.isChecked -> {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    }
-                    else -> {
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                    }
-                }
-                return true
+            R.id.action_theme_system, R.id.action_theme_light, R.id.action_theme_dark -> {
+                ThemeUtils.saveThemePreference(this, menuItem.itemId)
+                AppCompatDelegate.setDefaultNightMode(ThemeUtils.getThemeToUse(this))
+                menuItem.isChecked = true
+                true
             }
-            else -> return false
+            else -> false
         }
     }
 
@@ -138,7 +111,11 @@ class ConverterActivity : AppCompatActivity() {
         }
 
         val textFields = listOf(
-            Triple(binding.yearOfOriginAutoComplete, binding.sumToConvertInput, R.string.sumToConvert),
+            Triple(
+                binding.yearOfOriginAutoComplete,
+                binding.sumToConvertInput,
+                R.string.sumToConvert
+            ),
             Triple(binding.yearOfResultAutoComplete, binding.resultInput, R.string.resultText)
         )
         for ((yearInput, sumInput, hintStringId) in textFields) {
@@ -153,7 +130,10 @@ class ConverterActivity : AppCompatActivity() {
 
     private fun initButtons() {
         //Convert when the button is clicked
-        binding.convertButton.setImeActionLabel(getString(R.string.convertButton), KeyEvent.KEYCODE_ENTER)
+        binding.convertButton.setImeActionLabel(
+            getString(R.string.convertButton),
+            KeyEvent.KEYCODE_ENTER
+        )
 
         //Click button when using enter on the keyboard
         binding.sumToConvertText.setOnKeyListener(View.OnKeyListener { _, _, event ->
@@ -169,8 +149,10 @@ class ConverterActivity : AppCompatActivity() {
             try {
                 binding.sumToConvertInput.error = null
                 Utils.hideSoftKeyboard(v)
-                val yearOfOrigin = Integer.parseInt(binding.yearOfOriginAutoComplete.text.toString())
-                val yearOfResult = Integer.parseInt(binding.yearOfResultAutoComplete.text.toString())
+                val yearOfOrigin =
+                    Integer.parseInt(binding.yearOfOriginAutoComplete.text.toString())
+                val yearOfResult =
+                    Integer.parseInt(binding.yearOfResultAutoComplete.text.toString())
                 val amount = java.lang.Float.parseFloat(binding.sumToConvertText.text.toString())
                 binding.resultText.setText(
                     Utils.formatNumber(
