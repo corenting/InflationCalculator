@@ -3,13 +3,14 @@ package fr.corenting.convertisseureurofranc.converters
 import android.content.Context
 import java.io.BufferedReader
 import java.io.InputStreamReader
-import java.util.*
+import kotlin.math.max
+import kotlin.math.min
 
 abstract class ConverterAbstract(protected val context: Context, private val fileId: Int) {
 
     var latestYear: Int = 0
     var firstYear: Int = 0
-    protected var values: HashMap<Int, Float> = LinkedHashMap()
+    private var values: HashMap<Int, Float> = LinkedHashMap()
 
     init {
         loadValuesFromCSV()
@@ -34,20 +35,17 @@ abstract class ConverterAbstract(protected val context: Context, private val fil
         firstYear = Integer.MAX_VALUE
 
         while (iterator.hasNext()) {
-            val line = iterator.next()
-
-            val separatedLine = line
-                .split(";".toRegex())
-                .dropLastWhile { it.isEmpty() }
+            val splittedLine = iterator.next()
+                .split(";")
+                //.dropLastWhile { it.isEmpty() }
                 .toTypedArray()
 
-            val year = Integer.parseInt(separatedLine[0])
-            if (year > latestYear)
-                latestYear = year
-            if (year < firstYear)
-                firstYear = year
-            val value = java.lang.Float.parseFloat(separatedLine[1])
-            values[year] = value
+            val year = Integer.parseInt(splittedLine[0])
+
+            latestYear = max(year, latestYear)
+            firstYear = min(year, firstYear)
+
+            values[year] = splittedLine[1].toFloat()
         }
     }
 }
