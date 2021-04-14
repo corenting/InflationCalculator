@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.ConfigurationCompat
-import com.google.android.material.textfield.TextInputLayout
 import fr.corenting.convertisseureurofranc.converters.ConverterAbstract
 import fr.corenting.convertisseureurofranc.converters.FranceConverter
 import fr.corenting.convertisseureurofranc.converters.USAConverter
@@ -85,7 +84,7 @@ class ConverterActivity : AppCompatActivity() {
             else -> FranceConverter(applicationContext)
         }
         currentConverter = position
-        initYearInputs()
+        initInputFields()
     }
 
     private fun onMenuItemClickListener(menuItem: MenuItem): Boolean {
@@ -104,27 +103,46 @@ class ConverterActivity : AppCompatActivity() {
         }
     }
 
-    private fun initYearInputs() {
+    private fun initInputFields() {
         // Get list of years
         val yearsList = (converter.latestYear downTo converter.firstYear).toList().map {
             it.toString()
         }
 
-        val textFields = listOf(
+        // Set years inputs
+        val yearFields = listOf(
             Triple(
                 binding.yearOfOriginAutoComplete,
-                binding.sumToConvertInput,
-                R.string.sumToConvert
+                binding.yearOfOriginInput,
+                R.string.yearOfOrigin
             ),
-            Triple(binding.yearOfResultAutoComplete, binding.resultInput, R.string.resultText)
+            Triple(
+                binding.yearOfResultAutoComplete,
+                binding.yearOfResultInput,
+                R.string.yearOfResult
+            )
         )
-        for ((yearInput, sumInput, hintStringId) in textFields) {
-            setAutoCompleteAdapter(yearInput, yearsList)
-            setYearAutoCompleteListener(yearInput, sumInput, hintStringId)
+        for ((yearInputField, yearInputLayout, hintStringId) in yearFields) {
+            yearInputField.setText(yearsList.first().toString())
+            yearInputLayout.hint =
+                getString(hintStringId, converter.firstYear, converter.latestYear)
+            yearInputField.onFocusChangeListener = YearInputListener(
+                yearInputLayout, converter.firstYear, converter.latestYear, getString(
+                    R.string.invalid_year_error
+                )
+            )
+        }
 
-            yearInput.setText(yearsList.first(), false)
-
-            setCurrencyInputHint(sumInput, converter.latestYear, hintStringId)
+        // Set currency inputs
+        val currencyFields = listOf(
+            Pair(binding.sumToConvertInput, R.string.sumToConvert),
+            Pair(binding.resultInput, R.string.resultText)
+        )
+        for ((sumInput, hintStringId) in currencyFields) {
+            sumInput.hint = getString(
+                hintStringId,
+                converter.getCurrencyFromYear(converter.latestYear)
+            )
         }
     }
 
@@ -179,31 +197,5 @@ class ConverterActivity : AppCompatActivity() {
     ) {
         val adapter = AutocompleteAdapter(this, R.layout.list_item, items)
         autoCompleteTextView.setAdapter(adapter)
-    }
-
-    private fun setYearAutoCompleteListener(
-        autoCompleteTextView: AutoCompleteTextView,
-        textView: TextInputLayout,
-        stringReference: Int
-    ) {
-        autoCompleteTextView.onItemClickListener =
-            AdapterView.OnItemClickListener { parent, _, position, _ ->
-                if (parent != null) {
-                    Utils.hideSoftKeyboard(parent)
-                    val year = Integer.parseInt(parent.getItemAtPosition(position).toString())
-                    setCurrencyInputHint(textView, year, stringReference)
-                }
-            }
-    }
-
-    private fun setCurrencyInputHint(
-        textView: TextInputLayout,
-        year: Int,
-        stringReference: Int,
-    ) {
-        textView.hint = applicationContext.getString(
-            stringReference,
-            converter.getCurrencyFromYear(year)
-        )
     }
 }

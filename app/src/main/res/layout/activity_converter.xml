@@ -74,7 +74,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/yearOfOriginInput"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/sumToConvertInput"
@@ -82,19 +82,19 @@
                 android:hint="@string/yearOfOrigin"
                 app:startIconDrawable="@drawable/calendar">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/yearOfOriginAutoComplete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:imeOptions="flagNoExtractUi"
-                    android:inputType="none" />
+
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/yearOfResultInput"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/yearOfOriginInput"
@@ -106,8 +106,7 @@
                     android:id="@+id/yearOfResultAutoComplete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:imeOptions="flagNoExtractUi"
-                    android:inputType="none" />
+                    android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

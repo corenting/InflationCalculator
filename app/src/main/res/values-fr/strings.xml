@@ -3,8 +3,8 @@
 
     <string name="appName">Calculateur d\'inflation</string>
     <string name="sumToConvert">Somme à convertir (%1$s)</string>
-    <string name="yearOfOrigin">De (année)</string>
-    <string name="yearOfResult">Vers (année)</string>
+    <string name="yearOfOrigin">De (année), entre (%1$d) et (%2$d)</string>
+    <string name="yearOfResult">Vers (année), entre (%1$d) et (%2$d)</string>
     <string name="convertButton">Convertir</string>
     <string name="resultText">Résultat (%1$s)</string>
     <string name="actionAbout">À propos</string>
@@ -22,5 +22,6 @@
     <string name="theme_light">Clair</string>
     <string name="theme_dark">Sombre</string>
     <string name="theme_system">Système</string>
+    <string name="invalid_year_error">Année entrée invalide</string>
 
 </resources>

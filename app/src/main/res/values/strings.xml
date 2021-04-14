@@ -2,8 +2,8 @@
 <resources>
     <string name="appName">Inflation Calculator</string>
     <string name="sumToConvert">Amount to convert (%1$s)</string>
-    <string name="yearOfOrigin">From (year)</string>
-    <string name="yearOfResult">To (year)</string>
+    <string name="yearOfOrigin">From (year), between (%1$d) and (%2$d)</string>
+    <string name="yearOfResult">To (year), between (%1$d) and (%2$d)</string>
     <string name="convertButton">Convert</string>
     <string name="resultText">Result (%1$s)</string>
     <string name="actionAbout">About</string>
@@ -21,4 +21,5 @@
     <string name="theme_light">Light</string>
     <string name="theme_dark">Dark</string>
     <string name="theme_system">System</string>
+    <string name="invalid_year_error">Invalid year entered</string>
 </resources>
