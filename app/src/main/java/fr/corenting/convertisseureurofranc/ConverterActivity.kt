@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AutoCompleteTextView
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -104,11 +105,6 @@ class ConverterActivity : AppCompatActivity() {
     }
 
     private fun initInputFields() {
-        // Get list of years
-        val yearsList = (converter.latestYear downTo converter.firstYear).toList().map {
-            it.toString()
-        }
-
         // Set years inputs
         val yearFields = listOf(
             Triple(
@@ -122,26 +118,53 @@ class ConverterActivity : AppCompatActivity() {
                 R.string.yearOfResult
             )
         )
+
+        val yearsList = (converter.latestYear downTo converter.firstYear).toList().map {
+            it.toString()
+        }
         for ((yearInputField, yearInputLayout, hintStringId) in yearFields) {
             yearInputField.setText(yearsList.first().toString())
             yearInputLayout.hint =
                 getString(hintStringId, converter.firstYear, converter.latestYear)
-            yearInputField.onFocusChangeListener = YearInputListener(
-                yearInputLayout, converter.firstYear, converter.latestYear, getString(
+            yearInputField.onFocusChangeListener = View.OnFocusChangeListener { v, _ ->
+                val textContent = (v as EditText).text.toString()
+                val errorString = getString(
                     R.string.invalid_year_error
                 )
-            )
+                if (textContent.isBlank()) {
+                    yearInputLayout.error = errorString
+                }
+
+                try {
+                    val year = textContent.toInt()
+                    when {
+                        year < converter.firstYear || year > converter.latestYear -> {
+                            yearInputLayout.error = errorString
+                        }
+                        else -> {
+                            yearInputLayout.error = null
+                        }
+                    }
+                } catch (err: NumberFormatException) {
+                    yearInputLayout.error = errorString
+                }
+
+                // TODO: refresh corresponding currency input to handle currency change
+            }
         }
 
-        // Set currency inputs
+        refreshCurrencyInputs(converter.latestYear, converter.latestYear - 2)
+    }
+
+    private fun refreshCurrencyInputs(fromYear: Int, toYear: Int) {
         val currencyFields = listOf(
-            Pair(binding.sumToConvertInput, R.string.sumToConvert),
-            Pair(binding.resultInput, R.string.resultText)
+            Triple(binding.sumToConvertInput, R.string.sumToConvert, fromYear),
+            Triple(binding.resultInput, R.string.resultText, toYear)
         )
-        for ((sumInput, hintStringId) in currencyFields) {
+        for ((sumInput, hintStringId, year) in currencyFields) {
             sumInput.hint = getString(
                 hintStringId,
-                converter.getCurrencyFromYear(converter.latestYear)
+                converter.getCurrencyFromYear(year)
             )
         }
     }
