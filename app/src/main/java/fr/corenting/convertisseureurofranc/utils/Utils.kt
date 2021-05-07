@@ -10,14 +10,29 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.os.ConfigurationCompat
 import fr.corenting.convertisseureurofranc.BuildConfig
 import fr.corenting.convertisseureurofranc.R
+import fr.corenting.convertisseureurofranc.converters.ConverterAbstract
+import fr.corenting.convertisseureurofranc.converters.FranceConverter
+import fr.corenting.convertisseureurofranc.converters.USAConverter
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
 
 
 object Utils {
+
+    fun getConverterForCurrentLocale(context: Context): ConverterAbstract {
+        return when (ConfigurationCompat.getLocales(context.resources.configuration).get(0)) {
+            Locale.FRANCE -> {
+                FranceConverter(context)
+            }
+            else -> {
+                USAConverter(context)
+            }
+        }
+    }
 
     fun hideSoftKeyboard(v: View): Boolean {
         val imm = v.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -44,7 +59,8 @@ object Utils {
     }
 
     fun formatNumber(c: Context, number: Float): String {
-        val formatter = NumberFormat.getInstance(getCurrentLocale(c)) as DecimalFormat
+        val currentLocale = ConfigurationCompat.getLocales(c.resources.configuration).get(0)
+        val formatter = NumberFormat.getInstance(currentLocale) as DecimalFormat
         return formatter.format(number)
     }
 
@@ -57,12 +73,4 @@ object Utils {
         }
     }
 
-    private fun getCurrentLocale(ctx: Context): Locale {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            ctx.resources.configuration.locales.get(0)
-        } else {
-            @Suppress("DEPRECATION")
-            ctx.resources.configuration.locale
-        }
-    }
 }

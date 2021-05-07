@@ -5,7 +5,7 @@ import android.widget.ArrayAdapter
 import android.widget.Filter
 
 
-class AutocompleteAdapter<T>(context: Context, resource: Int, objects: List<T>) :
+class AutoCompleteAdapter<T>(context: Context, resource: Int, objects: List<T>) :
     ArrayAdapter<T>(context, resource, objects) {
 
     override fun getFilter(): Filter {

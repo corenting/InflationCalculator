@@ -1,16 +1,16 @@
 package fr.corenting.convertisseureurofranc
 
+import ConverterViewModel
+import ConverterViewModelFactory
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.AutoCompleteTextView
-import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.ConfigurationCompat
+import androidx.core.widget.doOnTextChanged
 import fr.corenting.convertisseureurofranc.converters.ConverterAbstract
 import fr.corenting.convertisseureurofranc.converters.FranceConverter
 import fr.corenting.convertisseureurofranc.converters.USAConverter
@@ -20,17 +20,7 @@ import fr.corenting.convertisseureurofranc.utils.Utils
 import java.util.*
 
 class ConverterActivity : AppCompatActivity() {
-
-    companion object {
-        private const val converterBundleKey = "converter"
-    }
-
-    private lateinit var converter: ConverterAbstract
     private lateinit var binding: ActivityConverterBinding
-
-
-    // Save position for config change
-    private var currentConverter: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Theme and creation
@@ -42,50 +32,101 @@ class ConverterActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         binding.topAppBar.setOnMenuItemClickListener(this::onMenuItemClickListener)
+        binding.topAppBar.menu.findItem(ThemeUtils.getMenuIdForCurrentTheme(this)).isChecked = true
 
-        //Set currency spinner content
+        // Common values
         val currenciesList = listOf(
             getString(R.string.usa_currencies),
             getString(R.string.france_currencies)
         )
-        setAutoCompleteAdapter(binding.currencyAutoComplete, currenciesList)
-        binding.currencyAutoComplete.onItemClickListener =
-            AdapterView.OnItemClickListener { _, _, position, _ ->
-                onCurrencyItemClickListener(position)
-            }
 
-        // Set default currency
-        if (savedInstanceState == null) {
-            val currentLocale: Locale =
-                ConfigurationCompat.getLocales(resources.configuration).get(0)
-            if (currentLocale == Locale.FRANCE) {
-                binding.currencyAutoComplete.setText(getString(R.string.france_currencies), false)
-                onCurrencyItemClickListener(1)
-            } else {
-                binding.currencyAutoComplete.setText(getString(R.string.usa_currencies), false)
-                onCurrencyItemClickListener(0)
+        // Sum input
+        binding.sumToConvertText.doOnTextChanged { text, _, _, _ ->
+            try {
+                if (text.toString().toFloat() > 0) {
+                    binding.sumToConvertInput.error = null
+                }
+            } catch (err: NumberFormatException) {
             }
-        } else {
-            onCurrencyItemClickListener(savedInstanceState.getInt(converterBundleKey))
         }
 
-        binding.topAppBar.menu.findItem(ThemeUtils.getMenuIdForCurrentTheme(this)).isChecked = true
-        initButtons()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-        outState.putInt(converterBundleKey, currentConverter)
-    }
-
-    private fun onCurrencyItemClickListener(position: Int) {
-        converter = when (position) {
-            0 -> USAConverter(applicationContext)
-            else -> FranceConverter(applicationContext)
+        // Viewmodel and converter setup
+        val converterViewModel: ConverterViewModel by viewModels {
+            ConverterViewModelFactory(Utils.getConverterForCurrentLocale(applicationContext))
         }
-        currentConverter = position
-        initInputFields()
+        converterViewModel.getConverter().observe(this, {
+            if (it != null) {
+                onConverterChange(it)
+
+                // Update selected in list (used at app opening)
+                var selectedCurrencyPosition = 0
+                if (it is FranceConverter) {
+                    selectedCurrencyPosition = 1
+                }
+                binding.currencyAutoComplete.setText(currenciesList[selectedCurrencyPosition])
+            }
+        })
+
+        //Set currency spinner content
+        val adapter = AutoCompleteAdapter(this, R.layout.list_item, currenciesList)
+        binding.currencyAutoComplete.setAdapter(adapter)
+        binding.currencyAutoComplete.setOnItemClickListener { _, _, position, _ ->
+            when (position) {
+                0 -> converterViewModel.setConverter(USAConverter(applicationContext))
+                else -> converterViewModel.setConverter(FranceConverter(applicationContext))
+            }
+        }
+        initButtons(converterViewModel)
+    }
+
+    private fun onConverterChange(newConverter: ConverterAbstract) {
+        val latestYear = newConverter.latestYear
+        val firstYear = newConverter.firstYear
+
+        binding.yearOfOriginAutoComplete.setText(latestYear.toString())
+        binding.yearOfOriginInput.hint = getString(R.string.yearOfOrigin, firstYear, latestYear)
+        binding.yearOfOriginAutoComplete.doOnTextChanged { text, _, _, _ ->
+            YearInputTextHandler.doOnTextChanged(
+                applicationContext,
+                newConverter,
+                binding.yearOfOriginAutoComplete,
+                binding.yearOfOriginInput
+            )
+            try {
+                val year = text.toString().toInt()
+                binding.sumToConvertInput.hint = getString(
+                    R.string.sumToConvert, newConverter.getCurrencyFromYear(year)
+                )
+            } catch (exc: NumberFormatException) {
+            }
+        }
+        binding.sumToConvertInput.hint = getString(
+            R.string.sumToConvert,
+            newConverter.getCurrencyFromYear(latestYear)
+        )
+
+        binding.yearOfResultAutoComplete.setText(latestYear.toString())
+        binding.yearOfResultInput.hint = getString(R.string.yearOfOrigin, firstYear, latestYear)
+        binding.yearOfResultAutoComplete.doOnTextChanged { text, _, _, _ ->
+            YearInputTextHandler.doOnTextChanged(
+                applicationContext,
+                newConverter,
+                binding.yearOfResultAutoComplete,
+                binding.yearOfResultInput
+            )
+            try {
+                val year = text.toString().toInt()
+                binding.resultInput.hint = getString(
+                    R.string.resultText,
+                    newConverter.getCurrencyFromYear(year)
+                )
+            } catch (exc: NumberFormatException) {
+            }
+        }
+        binding.resultInput.hint = getString(
+            R.string.resultText,
+            newConverter.getCurrencyFromYear(latestYear)
+        )
     }
 
     private fun onMenuItemClickListener(menuItem: MenuItem): Boolean {
@@ -104,72 +145,7 @@ class ConverterActivity : AppCompatActivity() {
         }
     }
 
-    private fun initInputFields() {
-        // Set years inputs
-        val yearFields = listOf(
-            Triple(
-                binding.yearOfOriginAutoComplete,
-                binding.yearOfOriginInput,
-                R.string.yearOfOrigin
-            ),
-            Triple(
-                binding.yearOfResultAutoComplete,
-                binding.yearOfResultInput,
-                R.string.yearOfResult
-            )
-        )
-
-        val yearsList = (converter.latestYear downTo converter.firstYear).toList().map {
-            it.toString()
-        }
-        for ((yearInputField, yearInputLayout, hintStringId) in yearFields) {
-            yearInputField.setText(yearsList.first().toString())
-            yearInputLayout.hint =
-                getString(hintStringId, converter.firstYear, converter.latestYear)
-            yearInputField.onFocusChangeListener = View.OnFocusChangeListener { v, _ ->
-                val textContent = (v as EditText).text.toString()
-                val errorString = getString(
-                    R.string.invalid_year_error
-                )
-                if (textContent.isBlank()) {
-                    yearInputLayout.error = errorString
-                }
-
-                try {
-                    val year = textContent.toInt()
-                    when {
-                        year < converter.firstYear || year > converter.latestYear -> {
-                            yearInputLayout.error = errorString
-                        }
-                        else -> {
-                            yearInputLayout.error = null
-                        }
-                    }
-                } catch (err: NumberFormatException) {
-                    yearInputLayout.error = errorString
-                }
-
-                // TODO: refresh corresponding currency input to handle currency change
-            }
-        }
-
-        refreshCurrencyInputs(converter.latestYear, converter.latestYear - 2)
-    }
-
-    private fun refreshCurrencyInputs(fromYear: Int, toYear: Int) {
-        val currencyFields = listOf(
-            Triple(binding.sumToConvertInput, R.string.sumToConvert, fromYear),
-            Triple(binding.resultInput, R.string.resultText, toYear)
-        )
-        for ((sumInput, hintStringId, year) in currencyFields) {
-            sumInput.hint = getString(
-                hintStringId,
-                converter.getCurrencyFromYear(year)
-            )
-        }
-    }
-
-    private fun initButtons() {
+    private fun initButtons(converterViewModel: ConverterViewModel) {
         //Convert when the button is clicked
         binding.convertButton.setImeActionLabel(
             getString(R.string.convertButton),
@@ -187,38 +163,34 @@ class ConverterActivity : AppCompatActivity() {
 
         //Setup listeners
         binding.convertButton.setOnClickListener { v ->
-            try {
-                binding.sumToConvertInput.error = null
-                Utils.hideSoftKeyboard(v)
-                val yearOfOrigin =
-                    Integer.parseInt(binding.yearOfOriginAutoComplete.text.toString())
-                val yearOfResult =
-                    Integer.parseInt(binding.yearOfResultAutoComplete.text.toString())
-                val amount = java.lang.Float.parseFloat(binding.sumToConvertText.text.toString())
-                binding.resultText.setText(
-                    Utils.formatNumber(
-                        this,
-                        converter.convertFunction(yearOfOrigin, yearOfResult, amount)
-                    )
-                )
-            } catch (e: Exception) {
-                if (binding.sumToConvertText.text == null || binding.sumToConvertText.text.toString() == "") {
-                    binding.sumToConvertInput.error = getString(R.string.no_amount_entered)
-                }
-                val errorToast = Toast.makeText(
-                    this, getString(R.string.errorToast),
-                    Toast.LENGTH_SHORT
-                )
-                errorToast.show()
-            }
+            binding.convertButton.requestFocus()
+            binding.sumToConvertInput.clearFocus()
+            binding.yearOfOriginAutoComplete.clearFocus()
+            binding.yearOfResultAutoComplete.clearFocus()
+            Utils.hideSoftKeyboard(v)
+            doConversion(converterViewModel)
         }
     }
 
-    private fun setAutoCompleteAdapter(
-        autoCompleteTextView: AutoCompleteTextView,
-        items: List<String>
-    ) {
-        val adapter = AutocompleteAdapter(this, R.layout.list_item, items)
-        autoCompleteTextView.setAdapter(adapter)
+    private fun doConversion(converterViewModel: ConverterViewModel) {
+        try {
+            binding.sumToConvertInput.error = null
+            val yearOfOrigin =
+                Integer.parseInt(binding.yearOfOriginAutoComplete.text.toString())
+            val yearOfResult =
+                Integer.parseInt(binding.yearOfResultAutoComplete.text.toString())
+            val amount = java.lang.Float.parseFloat(binding.sumToConvertText.text.toString())
+            val convertedAmount =
+                converterViewModel.doConversion(yearOfOrigin, yearOfResult, amount)
+            binding.resultText.setText(Utils.formatNumber(this, convertedAmount))
+        } catch (e: Exception) {
+            if (binding.sumToConvertText.text == null || binding.sumToConvertText.text.toString() == "") {
+                binding.sumToConvertInput.error = getString(R.string.no_amount_entered)
+            }
+            Toast.makeText(
+                this, getString(R.string.errorToast),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 }

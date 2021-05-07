@@ -7,7 +7,7 @@ import fr.corenting.convertisseureurofranc.R
 
 object ThemeUtils {
 
-    const val THEME_PREFERENCE_KEY = "theme"
+    private const val THEME_PREFERENCE_KEY = "theme"
 
     enum class ThemePreference(val preferenceValue: Int, val menuId: Int) {
         THEME_SYSTEM(1, R.id.action_theme_system),
@@ -16,9 +16,9 @@ object ThemeUtils {
 
         companion object {
             fun fromPreferenceValue(value: Int) =
-                ThemePreference.values().first { it.preferenceValue == value }
+                values().first { it.preferenceValue == value }
 
-            fun fromMenuId(value: Int) = ThemePreference.values().first { it.menuId == value }
+            fun fromMenuId(value: Int) = values().first { it.menuId == value }
         }
     }
 
