@@ -1,3 +1,6 @@
-Ce convertisseur euros-(anciens) francs permet de calculer le pouvoir d'achat d'une somme (France et USA) d’une année donnée en une somme équivalente d’une autre année, en prenant en compte l’inflation entre ces deux années.<br />
+Ce calculateur d'inflation permet de calculer le pouvoir d'achat d'une somme (France, USA ou UK) d’une année donnée en une somme équivalente d’une autre année, en prenant en compte l’inflation entre ces deux années.<br />
 
-Pour cela, cette application utilise les donnée de l'INSEE (https://www.insee.fr/fr/statistiques/serie/001643154) et du Bureau of Labor Statistics (https://www.bls.gov/cpi/)
+Pour cela, cette application utilise les donnée de plusieurs sources :
+- Bureau of Labor Statistics (https://www.bls.gov/cpi/) pour les USA
+- Office for National Statistics (https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/cdko/mm23) pour le Royaume-Uni
+- INSEE (https://www.insee.fr/fr/statistiques/serie/001643154) pour la France

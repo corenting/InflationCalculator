@@ -1,1 +1,1 @@
-Calculateur d'inflation pour la France et les USA
+Calculateur d'inflation pour la France, les USA et le Royaume-Uni

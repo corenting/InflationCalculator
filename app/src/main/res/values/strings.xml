@@ -13,9 +13,11 @@
     <string name="francs">francs</string>
     <string name="oldFrancs">old francs</string>
     <string name="dollars">dollars</string>
+    <string name="pounds_sterling">pounds sterling</string>
     <string name="currency">Currency</string>
     <string name="france_currencies">Euros and Francs (France)</string>
     <string name="usa_currencies">US Dollars (USA)</string>
+    <string name="uk_currencies">Pounds sterling (UK)</string>
     <string name="no_amount_entered">No amount entered</string>
     <string name="theme">Theme</string>
     <string name="theme_light">Light</string>

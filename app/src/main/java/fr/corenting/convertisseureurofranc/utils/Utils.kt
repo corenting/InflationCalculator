@@ -15,6 +15,7 @@ import fr.corenting.convertisseureurofranc.BuildConfig
 import fr.corenting.convertisseureurofranc.R
 import fr.corenting.convertisseureurofranc.converters.ConverterAbstract
 import fr.corenting.convertisseureurofranc.converters.FranceConverter
+import fr.corenting.convertisseureurofranc.converters.UKConverter
 import fr.corenting.convertisseureurofranc.converters.USAConverter
 import java.text.DecimalFormat
 import java.text.NumberFormat
@@ -27,6 +28,9 @@ object Utils {
         return when (ConfigurationCompat.getLocales(context.resources.configuration).get(0)) {
             Locale.FRANCE -> {
                 FranceConverter(context)
+            }
+            Locale.UK -> {
+                UKConverter(context)
             }
             else -> {
                 USAConverter(context)

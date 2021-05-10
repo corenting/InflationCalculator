@@ -1,9 +1,12 @@
+package fr.corenting.convertisseureurofranc
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import fr.corenting.convertisseureurofranc.converters.ConverterAbstract
 import java.lang.IllegalStateException
+
 
 class ConverterViewModelFactory(private val initConverter: ConverterAbstract) :
     ViewModelProvider.NewInstanceFactory() {

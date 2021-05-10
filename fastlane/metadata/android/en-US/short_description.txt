@@ -1,1 +1,1 @@
-Inflation calculator for USA and France
+Inflation calculator for USA, UK and France

@@ -1,3 +1,6 @@
-This converter allows you to calculate the buying power in a specified year of any amount of money (for France and for the USA) to an equivalent amount in another year by taking into account the inflation rate between these two years.<br />
+This converter allows you to calculate the buying power in a specified year of any amount of money (for USA, UK and France) to an equivalent amount in another year by taking into account the inflation rate between these two years.<br />
 
-To achieve this, this app uses data from from the INSEE (https://www.insee.fr/fr/statistiques/serie/001643154) and from the Bureau of Labor Statistics (https://www.bls.gov/cpi/)
+To achieve this, this app uses data from various sources :
+- The Bureau of Labor Statistics (https://www.bls.gov/cpi/) for the USA
+- The Office for National Statistics (https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/cdko/mm23) for the UK
+- The INSEE (https://www.insee.fr/fr/statistiques/serie/001643154) for France

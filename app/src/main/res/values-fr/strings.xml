@@ -23,5 +23,7 @@
     <string name="theme_dark">Sombre</string>
     <string name="theme_system">Système</string>
     <string name="invalid_year_error">Année entrée invalide</string>
+    <string name="pounds_sterling">livres sterling</string>
+    <string name="uk_currencies">Livres sterling (UK)</string>
 
 </resources>

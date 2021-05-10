@@ -4,12 +4,14 @@
 
 This inflation calculator allows you to check how prices have changed over time.
 It supports the following countries :
-- France (from 1901 to 2020)
 - USA (from 1913 to 2020)
+- UK (from 1800 to 2020)
+- France (from 1901 to 2020)
 
 ## Data sources ##
-- France : INSEE, https://www.insee.fr/fr/statistiques/serie/010605954
-- USA : Bureau of Labor Statistics (Historical CPI-U), https://www.bls.gov/cpi/
+- France: INSEE, https://www.insee.fr/fr/statistiques/serie/010605954
+- USA: Bureau of Labor Statistics (Historical CPI-U), https://www.bls.gov/cpi/
+- UK: Office for National Statistics, https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/cdko/mm23
 
 ## Download ##
 

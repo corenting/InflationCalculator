@@ -1,7 +1,5 @@
 package fr.corenting.convertisseureurofranc
 
-import ConverterViewModel
-import ConverterViewModelFactory
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.MenuItem
@@ -13,6 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.widget.doOnTextChanged
 import fr.corenting.convertisseureurofranc.converters.ConverterAbstract
 import fr.corenting.convertisseureurofranc.converters.FranceConverter
+import fr.corenting.convertisseureurofranc.converters.UKConverter
 import fr.corenting.convertisseureurofranc.converters.USAConverter
 import fr.corenting.convertisseureurofranc.databinding.ActivityConverterBinding
 import fr.corenting.convertisseureurofranc.utils.ThemeUtils
@@ -37,6 +36,7 @@ class ConverterActivity : AppCompatActivity() {
         // Common values
         val currenciesList = listOf(
             getString(R.string.usa_currencies),
+            getString(R.string.uk_currencies),
             getString(R.string.france_currencies)
         )
 
@@ -59,9 +59,16 @@ class ConverterActivity : AppCompatActivity() {
                 onConverterChange(it)
 
                 // Update selected in list (used at app opening)
-                var selectedCurrencyPosition = 0
-                if (it is FranceConverter) {
-                    selectedCurrencyPosition = 1
+                val selectedCurrencyPosition = when (it) {
+                    is UKConverter -> {
+                        1
+                    }
+                    is FranceConverter -> {
+                        2
+                    }
+                    else -> {
+                        0
+                    }
                 }
                 binding.currencyAutoComplete.setText(currenciesList[selectedCurrencyPosition])
             }
@@ -73,6 +80,7 @@ class ConverterActivity : AppCompatActivity() {
         binding.currencyAutoComplete.setOnItemClickListener { _, _, position, _ ->
             when (position) {
                 0 -> converterViewModel.setConverter(USAConverter(applicationContext))
+                1 -> converterViewModel.setConverter(UKConverter(applicationContext))
                 else -> converterViewModel.setConverter(FranceConverter(applicationContext))
             }
         }
