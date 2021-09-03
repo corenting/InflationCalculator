@@ -21,6 +21,12 @@ import java.util.*
 class ConverterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityConverterBinding
 
+    private val converters = mapOf(
+        USAConverter::class.java to 0,
+        UKConverter::class.java to 1,
+        FranceConverter::class.java to 2,
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         // Theme and creation
         AppCompatDelegate.setDefaultNightMode(ThemeUtils.getThemeToUse(this))
@@ -59,18 +65,7 @@ class ConverterActivity : AppCompatActivity() {
                 onConverterChange(it)
 
                 // Update selected in list (used at app opening)
-                val selectedCurrencyPosition = when (it) {
-                    is UKConverter -> {
-                        1
-                    }
-                    is FranceConverter -> {
-                        2
-                    }
-                    else -> {
-                        0
-                    }
-                }
-                binding.currencyAutoComplete.setText(currenciesList[selectedCurrencyPosition])
+                binding.currencyAutoComplete.setText(currenciesList[converters[it::class.java] ?: 0])
             }
         })
 
@@ -78,11 +73,10 @@ class ConverterActivity : AppCompatActivity() {
         val adapter = AutoCompleteAdapter(this, R.layout.list_item, currenciesList)
         binding.currencyAutoComplete.setAdapter(adapter)
         binding.currencyAutoComplete.setOnItemClickListener { _, _, position, _ ->
-            when (position) {
-                0 -> converterViewModel.setConverter(USAConverter(applicationContext))
-                1 -> converterViewModel.setConverter(UKConverter(applicationContext))
-                else -> converterViewModel.setConverter(FranceConverter(applicationContext))
-            }
+
+            val converterClass = converters.entries.associate { (key, value) -> value to key }[position] ?: USAConverter::class.java
+            val converter = converterClass.constructors[0].newInstance(applicationContext) as ConverterAbstract
+            converterViewModel.setConverter(converter)
         }
         initButtons(converterViewModel)
     }

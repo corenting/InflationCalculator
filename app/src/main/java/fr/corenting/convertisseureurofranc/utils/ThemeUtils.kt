@@ -54,7 +54,7 @@ object ThemeUtils {
             ThemePreference.THEME_DARK -> {
                 AppCompatDelegate.MODE_NIGHT_YES
             }
-            else -> {
+            ThemePreference.THEME_LIGHT -> {
                 AppCompatDelegate.MODE_NIGHT_NO
             }
         }

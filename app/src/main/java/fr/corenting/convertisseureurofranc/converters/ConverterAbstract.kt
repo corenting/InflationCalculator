@@ -37,7 +37,6 @@ abstract class ConverterAbstract(protected val context: Context, private val fil
         while (iterator.hasNext()) {
             val splittedLine = iterator.next()
                 .split(";")
-                //.dropLastWhile { it.isEmpty() }
                 .toTypedArray()
 
             val year = Integer.parseInt(splittedLine[0])
