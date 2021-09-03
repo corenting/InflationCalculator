@@ -2,13 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "fr.corenting.convertisseureurofranc"
         minSdkVersion 17
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 18
         versionName "2.9"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -57,7 +57,7 @@ dependencies {
     testImplementation 'androidx.test:core-ktx:1.4.0'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:3.12.4'
-    testImplementation "org.robolectric:robolectric:4.5.1"
+    testImplementation "org.robolectric:robolectric:4.6.1"
 }
 
 repositories {

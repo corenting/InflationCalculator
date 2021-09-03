@@ -14,6 +14,7 @@
 
         <activity
             android:name=".ConverterActivity"
+            android:exported="true"
             android:label="@string/appName">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
