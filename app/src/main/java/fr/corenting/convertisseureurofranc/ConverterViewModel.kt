@@ -10,8 +10,9 @@ import java.lang.IllegalStateException
 
 class ConverterViewModelFactory(private val initConverter: ConverterAbstract) :
     ViewModelProvider.NewInstanceFactory() {
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T =
-        ConverterViewModel(initConverter) as T
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return ConverterViewModel(initConverter) as T
+    }
 }
 
 class ConverterViewModel(initConverter: ConverterAbstract) : ViewModel() {
