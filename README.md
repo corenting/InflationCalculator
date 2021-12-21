@@ -1,6 +1,6 @@
 # Inflation Calculator #
 
-![Azure DevOps builds](https://img.shields.io/azure-devops/build/corenting/InflationCalculator/7) ![Azure DevOps tests (compact)](https://img.shields.io/azure-devops/tests/corenting/InflationCalculator/7?compact_message) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/corenting/InflationCalculator) ![License](https://img.shields.io/github/license/corenting/InflationCalculator)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/corenting/InflationCalculator/Android%20CI/master) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/corenting/InflationCalculator) ![License](https://img.shields.io/github/license/corenting/InflationCalculator)
 
 This inflation calculator allows you to check how prices have changed over time.
 It supports the following countries :
