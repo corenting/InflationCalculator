@@ -9,8 +9,8 @@ android {
         applicationId "fr.corenting.convertisseureurofranc"
         minSdkVersion 17
         targetSdkVersion 31
-        versionCode 18
-        versionName "2.9"
+        versionCode 19
+        versionName "2.10"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -49,7 +49,7 @@ dependencies {
     // Dependencies
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.preference:preference-ktx:1.1.1'
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'com.google.android.material:material:1.5.0'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
 
 
