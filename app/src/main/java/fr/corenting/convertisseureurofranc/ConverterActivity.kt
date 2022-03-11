@@ -16,7 +16,6 @@ import fr.corenting.convertisseureurofranc.converters.USAConverter
 import fr.corenting.convertisseureurofranc.databinding.ActivityConverterBinding
 import fr.corenting.convertisseureurofranc.utils.ThemeUtils
 import fr.corenting.convertisseureurofranc.utils.Utils
-import java.util.*
 
 class ConverterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityConverterBinding
@@ -60,22 +59,27 @@ class ConverterActivity : AppCompatActivity() {
         val converterViewModel: ConverterViewModel by viewModels {
             ConverterViewModelFactory(Utils.getConverterForCurrentLocale(applicationContext))
         }
-        converterViewModel.getConverter().observe(this, {
+        converterViewModel.getConverter().observe(this) {
             if (it != null) {
                 onConverterChange(it)
 
                 // Update selected in list (used at app opening)
-                binding.currencyAutoComplete.setText(currenciesList[converters[it::class.java] ?: 0])
+                binding.currencyAutoComplete.setText(
+                    currenciesList[converters[it::class.java] ?: 0]
+                )
             }
-        })
+        }
 
         //Set currency spinner content
         val adapter = AutoCompleteAdapter(this, R.layout.list_item, currenciesList)
         binding.currencyAutoComplete.setAdapter(adapter)
         binding.currencyAutoComplete.setOnItemClickListener { _, _, position, _ ->
 
-            val converterClass = converters.entries.associate { (key, value) -> value to key }[position] ?: USAConverter::class.java
-            val converter = converterClass.constructors[0].newInstance(applicationContext) as ConverterAbstract
+            val converterClass =
+                converters.entries.associate { (key, value) -> value to key }[position]
+                    ?: USAConverter::class.java
+            val converter =
+                converterClass.constructors[0].newInstance(applicationContext) as ConverterAbstract
             converterViewModel.setConverter(converter)
         }
         initButtons(converterViewModel)
@@ -108,7 +112,7 @@ class ConverterActivity : AppCompatActivity() {
         )
 
         binding.yearOfResultAutoComplete.setText(latestYear.toString())
-        binding.yearOfResultInput.hint = getString(R.string.yearOfOrigin, firstYear, latestYear)
+        binding.yearOfResultInput.hint = getString(R.string.yearOfResult, firstYear, latestYear)
         binding.yearOfResultAutoComplete.doOnTextChanged { text, _, _, _ ->
             YearInputTextHandler.doOnTextChanged(
                 applicationContext,
