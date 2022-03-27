@@ -138,7 +138,8 @@ class ConverterActivity : AppCompatActivity() {
     private fun onMenuItemClickListener(menuItem: MenuItem): Boolean {
         return when (menuItem.itemId) {
             R.id.action_about -> {
-                Utils.showCredits(this)
+                AboutDialogFragment().show(
+                    supportFragmentManager, AboutDialogFragment.TAG)
                 true
             }
             R.id.action_theme_system, R.id.action_theme_light, R.id.action_theme_dark -> {
