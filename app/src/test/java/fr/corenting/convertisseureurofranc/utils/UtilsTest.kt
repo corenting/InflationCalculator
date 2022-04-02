@@ -4,8 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.view.View
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.core.app.launchActivity
-import fr.corenting.convertisseureurofranc.ConverterActivity
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -26,16 +24,6 @@ class UtilsTest {
         val ret = Utils.hideSoftKeyboard(view)
 
         assertTrue(ret)
-    }
-
-    @Test
-    fun showCredits() {
-        val activityScenario = launchActivity<ConverterActivity>()
-        activityScenario.onActivity { activity ->
-            val dialog = Utils.showCredits(activity)
-
-            assertTrue(dialog.isShowing)
-        }
     }
 
     @Test
