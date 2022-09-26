@@ -139,7 +139,8 @@ class ConverterActivity : AppCompatActivity() {
         return when (menuItem.itemId) {
             R.id.action_about -> {
                 AboutDialogFragment().show(
-                    supportFragmentManager, AboutDialogFragment.TAG)
+                    supportFragmentManager, AboutDialogFragment.TAG
+                )
                 true
             }
             R.id.action_theme_system, R.id.action_theme_light, R.id.action_theme_dark -> {
