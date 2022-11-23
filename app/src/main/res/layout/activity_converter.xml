@@ -9,14 +9,13 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:theme="@style/AppTheme.Toolbar"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
             app:menu="@menu/converter"
-            app:subtitleTextColor="@android:color/white"
-            app:title="@string/appName"
-            app:titleTextColor="@android:color/white" />
+            app:popupTheme="@style/ThemeOverlay.Material3.Light"
+            app:title="@string/appName" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -26,8 +25,8 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
@@ -44,7 +43,7 @@
                 app:startIconDrawable="@drawable/cash">
 
                 <AutoCompleteTextView
-                    android:id="@+id/currencyAutoComplete"
+                    android:id="@+id/currencyTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none" />
@@ -83,10 +82,9 @@
                 app:startIconDrawable="@drawable/calendar">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/yearOfOriginAutoComplete"
+                    android:id="@+id/yearOfOriginEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -102,8 +100,8 @@
                 android:hint="@string/yearOfResult"
                 app:startIconDrawable="@drawable/calendar">
 
-                <AutoCompleteTextView
-                    android:id="@+id/yearOfResultAutoComplete"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/yearOfResultEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number" />

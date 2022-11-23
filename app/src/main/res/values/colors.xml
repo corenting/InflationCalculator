@@ -1,9 +1,4 @@
-<!--?xml version="1.0" encoding="UTF-8"?-->
 <resources>
-    <color name="primaryColor">#03A9F4</color>
-    <color name="primaryDarkColor">#0288D1</color>
-    <color name="secondaryColor">#F48FB1</color>
-    <color name="secondaryDarkColor">#E91E63</color>
-
-    <color name="statusBarColor">#0288D1</color>
+    <color name="md_theme_light_primary">#03A9F4</color>
+    <color name="md_theme_dark_primary">#006493</color>
 </resources>
