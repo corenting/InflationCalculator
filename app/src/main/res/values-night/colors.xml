@@ -1,9 +1,0 @@
-<!--?xml version="1.0" encoding="UTF-8"?-->
-<resources>
-    <color name="primaryColor">#607d8b</color>
-    <color name="primaryDarkColor">#34515e</color>
-    <color name="secondaryColor">#F48FB1</color>
-    <color name="secondaryDarkColor">#E91E63</color>
-
-    <color name="statusBarColor">#34515e</color>
-</resources>
