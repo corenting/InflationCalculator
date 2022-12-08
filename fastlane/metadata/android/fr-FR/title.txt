@@ -1,1 +1,1 @@
-Calculateur d'inflation (France, USA, UK)
+Calculateur d'inflation
