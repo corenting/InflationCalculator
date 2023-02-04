@@ -9,8 +9,8 @@ android {
         applicationId "fr.corenting.convertisseureurofranc"
         minSdkVersion 17
         targetSdkVersion 33
-        versionCode 22
-        versionName "2.13"
+        versionCode 23
+        versionName "2.14"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
