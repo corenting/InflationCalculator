@@ -26,6 +26,7 @@ object YearInputTextHandler {
                 year < converter.firstYear || year > converter.latestYear -> {
                     yearInputLayout.error = errorString
                 }
+
                 else -> {
                     yearInputLayout.error = null
                 }
