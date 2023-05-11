@@ -51,9 +51,11 @@ object ThemeUtils {
             ThemePreference.THEME_SYSTEM -> {
                 AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
             }
+
             ThemePreference.THEME_DARK -> {
                 AppCompatDelegate.MODE_NIGHT_YES
             }
+
             ThemePreference.THEME_LIGHT -> {
                 AppCompatDelegate.MODE_NIGHT_NO
             }

@@ -115,8 +115,8 @@
                 android:layout_below="@+id/yearOfResultInput"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
-                android:textColor="@android:color/white"
-                android:text="@string/convertButton" />
+                android:text="@string/convertButton"
+                android:textColor="@android:color/white" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/resultInput"

@@ -10,7 +10,7 @@ import fr.corenting.convertisseureurofranc.converters.UKConverter
 import fr.corenting.convertisseureurofranc.converters.USAConverter
 import java.text.DecimalFormat
 import java.text.NumberFormat
-import java.util.*
+import java.util.Locale
 
 
 object Utils {
@@ -20,9 +20,11 @@ object Utils {
             Locale.FRANCE -> {
                 FranceConverter(context)
             }
+
             Locale.UK -> {
                 UKConverter(context)
             }
+
             else -> {
                 USAConverter(context)
             }

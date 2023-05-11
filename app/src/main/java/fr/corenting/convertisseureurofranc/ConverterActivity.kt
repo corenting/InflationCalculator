@@ -148,12 +148,14 @@ class ConverterActivity : AppCompatActivity() {
                 )
                 true
             }
+
             R.id.action_theme_system, R.id.action_theme_light, R.id.action_theme_dark -> {
                 ThemeUtils.saveThemePreference(this, menuItem.itemId)
                 AppCompatDelegate.setDefaultNightMode(ThemeUtils.getThemeToUse(this))
                 menuItem.isChecked = true
                 true
             }
+
             else -> false
         }
     }
