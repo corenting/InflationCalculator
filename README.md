@@ -23,5 +23,6 @@ It supports the following countries :
 
 ## Donations
 
-- [https://ko-fi.com/corenting](https://ko-fi.com/corenting)
-- [https://www.buymeacoffee.com/corentin](https://www.buymeacoffee.com/corenting)
+If you wish to support the app, donations are possible on the following platforms:
+- [ko-fi](https://ko-fi.com/corenting)
+- [buymeacoffee](https://www.buymeacoffee.com/corenting)
