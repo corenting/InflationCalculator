@@ -6,6 +6,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.os.ConfigurationCompat
 import fr.corenting.convertisseureurofranc.converters.ConverterAbstract
 import fr.corenting.convertisseureurofranc.converters.FranceConverter
+import fr.corenting.convertisseureurofranc.converters.SouthKoreaConverter
 import fr.corenting.convertisseureurofranc.converters.UKConverter
 import fr.corenting.convertisseureurofranc.converters.USAConverter
 import java.text.DecimalFormat
@@ -23,6 +24,14 @@ object Utils {
 
             Locale.UK -> {
                 UKConverter(context)
+            }
+
+            Locale.US -> {
+                USAConverter(context)
+            }
+
+            Locale.KOREA -> {
+                SouthKoreaConverter(context)
             }
 
             else -> {
