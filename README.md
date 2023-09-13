@@ -9,11 +9,14 @@ It supports the following countries :
 - USA (from 1913 to 2022)
 - UK (from 1800 to 2022)
 - France (from 1901 to 2022)
+- South Korea (from 1965 to 2022)
 
 ## Data sources
-- France: INSEE, https://www.insee.fr/fr/statistiques/serie/010605954
+
 - USA: Bureau of Labor Statistics (Historical CPI-U), https://www.bls.gov/cpi/
 - UK: Office for National Statistics, https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/cdko/mm23
+- France: INSEE, https://www.insee.fr/fr/statistiques/serie/010605954
+- South Korea:  Statistics Korea (Consumer Price Inflation Rate - 소비자물가상승률), https://www.index.go.kr/unity/potal/indicator/PotalIdxSearch.do?idxCd=4226&sttsCd=422601&clas_div=&idx_sys_cd=
 
 ## Download
 
@@ -23,6 +26,4 @@ It supports the following countries :
 
 ## Donations
 
-If you wish to support the app, donations are possible on the following platforms:
-- [ko-fi](https://ko-fi.com/corenting)
-- [buymeacoffee](https://www.buymeacoffee.com/corenting)
+If you wish to support the app, donations are possible [here](https://corenting.fr/donate).

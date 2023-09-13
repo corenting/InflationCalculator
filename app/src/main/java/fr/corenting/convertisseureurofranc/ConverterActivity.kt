@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.doOnTextChanged
 import fr.corenting.convertisseureurofranc.converters.ConverterAbstract
 import fr.corenting.convertisseureurofranc.converters.FranceConverter
+import fr.corenting.convertisseureurofranc.converters.SouthKoreaConverter
 import fr.corenting.convertisseureurofranc.converters.UKConverter
 import fr.corenting.convertisseureurofranc.converters.USAConverter
 import fr.corenting.convertisseureurofranc.databinding.ActivityConverterBinding
@@ -25,6 +26,7 @@ class ConverterActivity : AppCompatActivity() {
         USAConverter::class.java to 0,
         UKConverter::class.java to 1,
         FranceConverter::class.java to 2,
+        SouthKoreaConverter::class.java to 3,
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +49,8 @@ class ConverterActivity : AppCompatActivity() {
         val currenciesList = listOf(
             getString(R.string.usa_currencies),
             getString(R.string.uk_currencies),
-            getString(R.string.france_currencies)
+            getString(R.string.france_currencies),
+            getString(R.string.south_korea_currencies)
         )
 
         // Sum input

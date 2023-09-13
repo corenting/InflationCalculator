@@ -14,7 +14,9 @@
     <string name="francs">francs</string>
     <string name="oldFrancs">anciens francs</string>
     <string name="dollars">dollars</string>
+    <string name="wons">wons</string>
     <string name="currency">Devise</string>
+    <string name="south_korea_currencies">Wons (Corée du Sud)</string>
     <string name="no_amount_entered">Aucun montant entré</string>
     <string name="usa_currencies">Dollars US (USA)</string>
     <string name="france_currencies">Euros et Francs (France)</string>
