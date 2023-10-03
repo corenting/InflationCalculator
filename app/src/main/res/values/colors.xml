@@ -1,5 +1,5 @@
 
 <resources>
-    <color name="md_theme_light_primary">#03A8F2</color>
-    <color name="md_theme_dark_primary">#006493</color>
+    <color name="md_theme_light_primary">#009688</color>
+    <color name="md_theme_dark_primary">#006E64</color>
 </resources>
