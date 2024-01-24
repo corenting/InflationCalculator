@@ -1,10 +1,10 @@
 Ce calculateur d'inflation permet de calculer le pouvoir d'achat d'une somme d’une année donnée en une somme équivalente d’une autre année, en prenant en compte l'inflation entre ces deux années.
 
 Les pays suivants sont supportés :
-- USA (de 1913 à 2022)
-- UK (de 1800 à 2022)
-- France (de 1901 à 2022)
-- South Korea (de 1965 à 2022)
+- USA (de 1913 à 2023)
+- UK (de 1800 à 2023)
+- France (de 1901 à 2023)
+- South Korea (de 1965 à 2023)
 
 Pour cela, l'application utilise les données de plusieurs sources :
 - USA: Bureau of Labor Statistics (Historical CPI-U), https://www.bls.gov/cpi/
