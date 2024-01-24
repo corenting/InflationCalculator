@@ -22,7 +22,7 @@ It supports the following countries :
 - USA: Bureau of Labor Statistics (Historical CPI-U), https://www.bls.gov/cpi/
 - UK: Office for National Statistics, https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/cdko/mm23
 - France: INSEE, https://www.insee.fr/fr/statistiques/serie/010605954
-- South Korea:  Statistics Korea (Consumer Price Inflation Rate - 소비자물가상승률), https://www.index.go.kr/unity/potal/indicator/PotalIdxSearch.do?idxCd=4226&sttsCd=422601&clas_div=&idx_sys_cd=
+- South Korea: Statistics Korea (Consumer Price Inflation Rate - 소비자물가상승률), https://www.index.go.kr/unity/potal/indicator/PotalIdxSearch.do?idxCd=4226&sttsCd=422601&clas_div=&idx_sys_cd=
 
 ## Download
 
