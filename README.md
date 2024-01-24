@@ -1,6 +1,6 @@
 <div align="center">
 
-<image src="fastlane/metadata/android/en-US/images/icon.png" height="100">
+<image src="fastlane/metadata/android/en-US/images/icon_with_outline.png" height="100">
 
 # Inflation Calculator
 
