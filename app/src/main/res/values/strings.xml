@@ -7,7 +7,7 @@
     <string name="convertButton">Convert</string>
     <string name="resultText">Result (%1$s)</string>
     <string name="actionAbout">About</string>
-    <string name="aboutText"><![CDATA[The transition from old Francs to new Francs is automatic from 1960.<br>The transition from Francs to Euro is automatic from 2002.<br><br>This application was created by corenting.<br><a href="http://www.corenting.fr">Website</a><br><br>Version :&nbsp;]]></string>
+    <string name="aboutText"><![CDATA[For France, the transition from old Francs to new Francs is automatic from 1960. The transition from Francs to Euro is automatic from 2002.<br><br>This application was created by <a href="http://www.corenting.fr">corenting</a>.<br><br><a href="https://github.com/corenting/InflationCalculator">Github repository</a> (source code and issues tracker)<br><br>License: MIT<br><br>Version:&nbsp;]]></string>
     <string name="errorToast">Error during the conversion!</string>
     <string name="euros">euros</string>
     <string name="francs">francs</string>

@@ -8,7 +8,7 @@
     <string name="convertButton">Convertir</string>
     <string name="resultText">Résultat (%1$s)</string>
     <string name="actionAbout">À propos</string>
-    <string name="aboutText"><![CDATA[Le passage des anciens Francs aux nouveaux Francs s\'effectue automatiquement à partir de 1960.<br>Le passage des Francs à l\'Euro s\'effectue automatiquent à partir de 2002.<br><br>Une application créée par corenting.<br><a href="http://www.corenting.fr">Site web</a><br><br>Version :&nbsp;]]></string>
+    <string name="aboutText"><![CDATA[Pour la France, le passage des anciens Francs aux nouveaux Francs s\'effectue automatiquement à partir de 1960. Le passage des Francs à l\'Euro s\'effectue automatiquent à partir de 2002.<br><br>Une application créée par <a href="http://www.corenting.fr">corenting</a>.<br><br><a href="https://github.com/corenting/InflationCalculator">Dépôt Github</a> (code source et suivi des bugs)<br><br>Licence : MIT<br><br>Version :&nbsp;]]></string>
     <string name="errorToast">Erreur lors de la conversion !</string>
     <string name="euros">euros</string>
     <string name="francs">francs</string>
