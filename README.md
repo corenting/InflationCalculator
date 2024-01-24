@@ -1,8 +1,14 @@
+<div align="center">
+
+<image src="https://github.com/corenting/InflationCalculator/blob/master/fastlane/metadata/android/en-US/images/icon.png" height="100" style="border:10px solid transparent;">
+
 # Inflation Calculator
 
 ![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/corenting/InflationCalculator/ci.yml?branch=master)
 [![GitHub release](https://img.shields.io/github/release/corenting/InflationCalculator.svg)](https://github.com/corenting/InflationCalculator/releases)
 [![GitHub license](https://img.shields.io/github/license/corenting/InflationCalculator.svg)](https://github.com/corenting/InflationCalculator/blob/master/LICENSE)
+
+</div>
 
 This inflation calculator allows you to calculate the buying power in a specified year of any amount of money to an equivalent amount in another year by taking into account the inflation rate between these two years.
 It supports the following countries :
