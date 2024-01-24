@@ -1,6 +1,6 @@
 <div align="center">
 
-<image src="https://github.com/corenting/InflationCalculator/blob/master/fastlane/metadata/android/en-US/images/icon.png" height="100">
+<image src="fastlane/metadata/android/en-US/images/icon.png" height="100">
 
 # Inflation Calculator
 
@@ -23,6 +23,13 @@ It supports the following countries :
 - UK: Office for National Statistics, https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/cdko/mm23
 - France: INSEE, https://www.insee.fr/fr/statistiques/serie/010605954
 - South Korea:  Statistics Korea (Consumer Price Inflation Rate - 소비자물가상승률), https://www.index.go.kr/unity/potal/indicator/PotalIdxSearch.do?idxCd=4226&sttsCd=422601&clas_div=&idx_sys_cd=
+
+## Screenshots
+
+<div>
+<image src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" width="15%">
+<image src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" width="15%">
+</div>
 
 ## Download
 
