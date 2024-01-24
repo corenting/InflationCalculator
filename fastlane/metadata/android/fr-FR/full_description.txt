@@ -1,7 +1,13 @@
-Ce calculateur d'inflation permet de calculer le pouvoir d'achat d'une somme (France, USA, UK et Corée du Sud) d’une année donnée en une somme équivalente d’une autre année, en prenant en compte l’inflation entre ces deux années.<br />
+Ce calculateur d'inflation permet de calculer le pouvoir d'achat d'une somme d’une année donnée en une somme équivalente d’une autre année, en prenant en compte l'inflation entre ces deux années.
 
-Pour cela, cette application utilise les donnée de plusieurs sources :
-- USA : Bureau of Labor Statistics (Historical CPI-U), https://www.bls.gov/cpi/
-- UK : Office for National Statistics, https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/cdko/mm23
-- France : INSEE, https://www.insee.fr/fr/statistiques/serie/010605954
-- Corée du Sud :  Statistics Korea (Consumer Price Inflation Rate - 소비자물가상승률), https://www.index.go.kr/unity/potal/indicator/PotalIdxSearch.do?idxCd=4226&sttsCd=422601&clas_div=&idx_sys_cd=
+Les pays suivants sont supportés :
+- USA (de 1913 à 2022)
+- UK (de 1800 à 2022)
+- France (de 1901 à 2022)
+- South Korea (de 1965 à 2022)
+
+Pour cela, l'application utilise les données de plusieurs sources :
+- USA: Bureau of Labor Statistics (Historical CPI-U), https://www.bls.gov/cpi/
+- UK: Office for National Statistics, https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/cdko/mm23
+- France: INSEE, https://www.insee.fr/fr/statistiques/serie/010605954
+- South Korea: Statistics Korea (Consumer Price Inflation Rate - 소비자물가상승률), https://www.index.go.kr/unity/potal/indicator/PotalIdxSearch.do?idxCd=4226&sttsCd=422601&clas_div=&idx_sys_cd=
