@@ -11,7 +11,7 @@
 </div>
 
 This inflation calculator allows you to calculate the buying power in a specified year of any amount of money to an equivalent amount in another year by taking into account the inflation rate between these two years.
-It supports the following countries :
+It supports the following countries:
 - USA (from 1913 to 2022)
 - UK (from 1800 to 2022)
 - France (from 1901 to 2022)
