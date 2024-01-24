@@ -1,6 +1,6 @@
 <div align="center">
 
-<image src="https://github.com/corenting/InflationCalculator/blob/master/fastlane/metadata/android/en-US/images/icon.png" height="100" style="border:10px solid transparent;">
+<image src="https://github.com/corenting/InflationCalculator/blob/master/fastlane/metadata/android/en-US/images/icon.png" height="100">
 
 # Inflation Calculator
 
@@ -26,9 +26,15 @@ It supports the following countries :
 
 ## Download
 
-- [F-Droid](https://f-droid.org/packages/fr.corenting.convertisseureurofranc/)
-- [Google Play](https://play.google.com/store/apps/details?id=fr.corenting.convertisseureurofranc&utm_source=github_readme)
-- [Github releases](https://github.com/corenting/InflationCalculator/releases/latest)
+<a href="https://f-droid.org/packages/fr.corenting.convertisseureurofranc">
+      <img alt="Get it on F-Droid" src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" height="80">
+</a>
+<a href="https://play.google.com/store/apps/details?id=fr.corenting.convertisseureurofranc&utm_source=github_readme">
+      <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="80">
+</a>
+<a href="https://github.com/corenting/InflationCalculator/releases/latest">
+      <img alt="Get it on GitHub" src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png" height="80">
+</a>
 
 ## Donations
 
