@@ -3,7 +3,18 @@ updates:
   - package-ecosystem: gradle
     directory: "/"
     schedule:
-      interval: daily
-    open-pull-requests-limit: 5
-    reviewers:
-      - corenting
+      interval: "weekly"
+    groups:
+      production-dependencies:
+        dependency-type: "production"
+      development-dependencies:
+        dependency-type: "development"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      production-dependencies:
+        dependency-type: "production"
+      development-dependencies:
+        dependency-type: "development"
