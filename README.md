@@ -45,7 +45,7 @@ It supports the following countries:
 
 ## Requirements
 
-- Android 4.4
+- Android 4.4+
 
 ## Donations
 
