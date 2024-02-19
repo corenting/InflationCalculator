@@ -43,6 +43,10 @@ It supports the following countries:
       <img alt="Get it on GitHub" src="https://i.ibb.co/q0mdc4Z/get-it-on-github.png" height="80">
 </a>
 
+## Requirements
+
+- Android 4.4
+
 ## Donations
 
 If you wish to support the app, donations are possible [here](https://corenting.fr/donate).
