@@ -48,7 +48,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Dependencies
-    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.core:core-ktx:1.13.0'
     implementation 'androidx.preference:preference-ktx:1.2.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
@@ -57,8 +57,8 @@ dependencies {
     // Tests
     testImplementation 'androidx.test:core-ktx:1.5.0'
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.mockito:mockito-core:5.10.0'
-    testImplementation "org.robolectric:robolectric:4.11.1"
+    testImplementation 'org.mockito:mockito-core:5.11.0'
+    testImplementation "org.robolectric:robolectric:4.12.1"
 }
 
 repositories {
