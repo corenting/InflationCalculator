@@ -6,11 +6,16 @@ import java.io.InputStreamReader
 import kotlin.math.max
 import kotlin.math.min
 
-abstract class ConverterAbstract(protected val context: Context, private val fileId: Int) {
+abstract class ConverterAbstract(
+    protected val context: Context,
+    private val fileId: Int,
+    val currenciesLabel: String
+) {
 
     var latestYear: Int = 0
     var firstYear: Int = 0
     private var values: HashMap<Int, Float> = LinkedHashMap()
+
 
     init {
         loadValuesFromCSV()

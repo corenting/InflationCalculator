@@ -4,8 +4,9 @@ import android.content.Context
 
 import fr.corenting.convertisseureurofranc.R
 
-class UKConverter(context: Context) : ConverterAbstract(context, R.raw.uk_values) {
-
+class UKConverter(context: Context) :
+    ConverterAbstract(context, R.raw.uk_values, context.getString(R.string.uk_currencies)) {
+        
     override fun convertFunction(yearOfOrigin: Int, yearOfResult: Int, amount: Float): Float {
         if (yearOfOrigin == yearOfResult) return amount
 

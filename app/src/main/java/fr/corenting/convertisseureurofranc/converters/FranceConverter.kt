@@ -4,7 +4,7 @@ import android.content.Context
 
 import fr.corenting.convertisseureurofranc.R
 
-class FranceConverter(context: Context) : ConverterAbstract(context, R.raw.fr_values) {
+class FranceConverter(context: Context) : ConverterAbstract(context, R.raw.fr_values, context.getString(R.string.france_currencies)) {
 
     override fun convertFunction(yearOfOrigin: Int, yearOfResult: Int, amount: Float): Float {
         var newAmount = amount

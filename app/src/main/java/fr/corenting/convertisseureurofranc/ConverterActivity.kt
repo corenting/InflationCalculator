@@ -1,6 +1,7 @@
 package fr.corenting.convertisseureurofranc
 
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
@@ -22,11 +23,11 @@ import fr.corenting.convertisseureurofranc.utils.Utils
 class ConverterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityConverterBinding
 
-    private val converters = mapOf(
-        USAConverter::class.java to 0,
-        UKConverter::class.java to 1,
-        FranceConverter::class.java to 2,
-        SouthKoreaConverter::class.java to 3,
+    private val enabledConverters = listOf(
+        USAConverter::class.java,
+        UKConverter::class.java,
+        FranceConverter::class.java,
+        SouthKoreaConverter::class.java,
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,14 +46,6 @@ class ConverterActivity : AppCompatActivity() {
         binding.topAppBar.setOnMenuItemClickListener(this::onMenuItemClickListener)
         binding.topAppBar.menu.findItem(ThemeUtils.getMenuIdForCurrentTheme(this)).isChecked = true
 
-        // Common values
-        val currenciesList = listOf(
-            getString(R.string.usa_currencies),
-            getString(R.string.uk_currencies),
-            getString(R.string.france_currencies),
-            getString(R.string.south_korea_currencies)
-        )
-
         // Sum input
         binding.sumToConvertText.doOnTextChanged { text, _, _, _ ->
             try {
@@ -60,6 +53,7 @@ class ConverterActivity : AppCompatActivity() {
                     binding.sumToConvertInput.error = null
                 }
             } catch (err: NumberFormatException) {
+                Log.d("input", "Error converting input to int: should not happen")
             }
         }
 
@@ -71,25 +65,23 @@ class ConverterActivity : AppCompatActivity() {
             if (it != null) {
                 onConverterChange(it)
 
-                // Update selected in list (used at app opening)
                 binding.currencyTextView.setText(
-                    currenciesList[converters[it::class.java] ?: 0]
+                    it.currenciesLabel
                 )
             }
         }
 
-        //Set currency spinner content
-        val adapter = DropdownAdapter(this, R.layout.list_item, currenciesList)
+        //Set currency spinner content + listener
+        val adapter = DropdownAdapter(this, R.layout.list_item, enabledConverters.map { item ->
+            (item.constructors[0].newInstance(applicationContext) as ConverterAbstract).currenciesLabel
+        }.toList())
         binding.currencyTextView.setAdapter(adapter)
         binding.currencyTextView.setOnItemClickListener { _, _, position, _ ->
-
-            val converterClass =
-                converters.entries.associate { (key, value) -> value to key }[position]
-                    ?: USAConverter::class.java
             val converter =
-                converterClass.constructors[0].newInstance(applicationContext) as ConverterAbstract
+                enabledConverters[position].constructors[0].newInstance(applicationContext) as ConverterAbstract
             converterViewModel.setConverter(converter)
         }
+
         initButtons(converterViewModel)
     }
 
@@ -112,6 +104,7 @@ class ConverterActivity : AppCompatActivity() {
                     R.string.sumToConvert, newConverter.getCurrencyFromYear(year)
                 )
             } catch (exc: NumberFormatException) {
+                Log.d("input", "Error converting input to int: should not happen")
             }
         }
         binding.sumToConvertInput.hint = getString(
@@ -135,6 +128,7 @@ class ConverterActivity : AppCompatActivity() {
                     newConverter.getCurrencyFromYear(year)
                 )
             } catch (exc: NumberFormatException) {
+                Log.d("input", "Error converting input to int: should not happen")
             }
         }
         binding.resultInput.hint = getString(
@@ -164,7 +158,7 @@ class ConverterActivity : AppCompatActivity() {
     }
 
     private fun initButtons(converterViewModel: ConverterViewModel) {
-        //Convert when the button is clicked
+        // Convert when the button is clicked
         binding.convertButton.setImeActionLabel(
             getString(R.string.convertButton),
             KeyEvent.KEYCODE_ENTER
