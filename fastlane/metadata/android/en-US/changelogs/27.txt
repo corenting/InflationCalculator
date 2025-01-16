@@ -1,0 +1,2 @@
+- Add data for 2024
+- Drop support for Android 4.4

@@ -1,0 +1,2 @@
+- Ajout des données pour 2024
+- Arrêt du support d'Android 4.4
