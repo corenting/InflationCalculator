@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "fr.corenting.convertisseureurofranc"
-        minSdkVersion 19
-        targetSdkVersion 34
-        versionCode 26
-        versionName "2.17"
+        minSdkVersion 21
+        targetSdkVersion 35
+        versionCode 27
+        versionName "2.18"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -47,10 +47,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Dependencies
-    implementation 'androidx.core:core-ktx:1.13.0'
+    implementation 'androidx.core:core-ktx:1.15.0'
     implementation 'androidx.preference:preference-ktx:1.2.1'
-    implementation 'com.google.android.material:material:1.11.0'
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0"
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7"
 
 
     // Tests
