@@ -1,0 +1,1 @@
+Correctif pour l'affichage de la toolbar sur les versions récentes d'Android

@@ -1,0 +1,1 @@
+Fix toolbar display on recent android versions
