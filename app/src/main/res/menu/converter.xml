@@ -3,18 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_theme"
+        android:contentDescription="@string/theme"
         android:title="@string/theme"
         app:showAsAction="never">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/action_theme_system"
+                    android:contentDescription="@string/theme_system"
                     android:title="@string/theme_system" />
                 <item
                     android:id="@+id/action_theme_light"
+                    android:contentDescription="@string/theme_light"
                     android:title="@string/theme_light" />
                 <item
                     android:id="@+id/action_theme_dark"
+                    android:contentDescription="@string/theme_dark"
                     android:title="@string/theme_dark" />
             </group>
         </menu>
@@ -22,6 +26,7 @@
 
     <item
         android:id="@+id/action_about"
+        android:contentDescription="@string/actionAbout"
         android:title="@string/actionAbout"
         app:showAsAction="never" />
 </menu>
