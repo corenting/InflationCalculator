@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.os.ConfigurationCompat
+import fr.corenting.convertisseureurofranc.converters.CanadaConverter
 import fr.corenting.convertisseureurofranc.converters.ConverterAbstract
 import fr.corenting.convertisseureurofranc.converters.FranceConverter
 import fr.corenting.convertisseureurofranc.converters.SouthKoreaConverter
@@ -32,6 +33,10 @@ object Utils {
 
             Locale.KOREA -> {
                 SouthKoreaConverter(context)
+            }
+
+            Locale.CANADA -> {
+                CanadaConverter(context)
             }
 
             else -> {

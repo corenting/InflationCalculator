@@ -20,6 +20,8 @@
     <string name="usa_currencies">US Dollars (USA)</string>
     <string name="uk_currencies">Pounds sterling (UK)</string>
     <string name="south_korea_currencies">Wons (South Korea)</string>
+    <string name="canadian_dollars">canadian dollars</string>
+    <string name="canada_currencies">Canadian Dollars (Canada)</string>
     <string name="no_amount_entered">No amount entered</string>
     <string name="theme">Theme</string>
     <string name="theme_light">Light</string>
