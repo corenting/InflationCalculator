@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.widget.doOnTextChanged
+import fr.corenting.convertisseureurofranc.converters.CanadaConverter
 import fr.corenting.convertisseureurofranc.converters.ConverterAbstract
 import fr.corenting.convertisseureurofranc.converters.FranceConverter
 import fr.corenting.convertisseureurofranc.converters.SouthKoreaConverter
@@ -28,6 +29,7 @@ class ConverterActivity : AppCompatActivity() {
         UKConverter::class.java,
         FranceConverter::class.java,
         SouthKoreaConverter::class.java,
+        CanadaConverter::class.java,
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
